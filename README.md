@@ -1,4 +1,5 @@
 # React jegyzet
+Segédlet a React frontend keretrendszer megismeréséhez. Lépésről lépésre
 
 ## HTML, CSS és JavaScript Alapok
 
