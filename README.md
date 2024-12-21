@@ -1,6 +1,3 @@
-Rendben, átalakítom a dokumentumot Markdown formátumba. Íme a konvertált tartalom:
-
-```markdown
 # React jegyzet
 
 ## HTML, CSS és JavaScript Alapok
@@ -196,6 +193,3 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 
 ## Frissítések és Új Technológiák Követése
 A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, mik az új trendek és best practice-ek.
-```
-
-Ezt a Markdown formátumú tartalmat másolhatod a `README.md` fájlba a GitHub repositorydban. Ha bármilyen további kérdésed van, nyugodtan tedd fel! 😊
