@@ -1,4 +1,5 @@
 import './UserCard.css'; // CSS fájl importálása
+import PropTypes from 'prop-types';
 
 const UserCard = ({ name, age, hobbies }) => {
   return (
@@ -19,5 +20,10 @@ UserCard.defaultProps = {
     age: 'N/A',
     hobbies: [],
   };
-  
+UserCard.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  hobbies: PropTypes.arrayOf(PropTypes.string),
+};
+
 export default UserCard;
