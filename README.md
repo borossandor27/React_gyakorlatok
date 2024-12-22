@@ -129,11 +129,57 @@ class App extends React.Component {
 export default App;
 ```
 
-### JSX
-A React egyedi szintaxisa, ami lehetővé teszi a JavaScript és HTML kombinációját.
+### JSX (JavaScript XML)
+A React egyedi szintaxisa, ami lehetővé teszi a JavaScript és HTML kombinációját. Kibővíti a JavaScript lehetőségeit, segítségével deklaratív módon írjuk le a felhasználói felületeket. Használata olvashatóbbá és struktúráltabbá teszi a kódot.
+```jsx
+import React from 'react';
+
+const App = () => {
+  const user = {
+    name: 'Anna',
+    age: 28,
+    hobbies: ['reading', 'coding', 'hiking'],
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1>Welcome to React with Vite!</h1>
+      <p>
+        <strong>Name:</strong> {user.name}
+      </p>
+      <p>
+        <strong>Age:</strong> {user.age}
+      </p>
+      <h3>Hobbies:</h3>
+      <ul>
+        {user.hobbies.map((hobby, index) => (
+          <li key={index}>{hobby}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+```
 
 ### Props
-Adatokat átadása komponensek között (props).
+A props (_az angol "properties" szóból származik_) a React komponensek közötti adatátvitel mechanizmusa. Ez egy objektum, amelyet a szülő komponens továbbít a gyermek komponensnek. A props segítségével dinamikus adatokat adhatunk át a gyermek komponenseknek, hogy azok testreszabottan jelenítsenek meg tartalmat vagy működjenek.
+
+```jsx
+function Car(props) {
+  return <h2>I am a {props.brand}!</h2>;
+}
+
+function Garage() {
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <Car brand="Ford" />
+    </>
+  );
+}
+```
 
 ### State
 Állapotok kezelése egy komponensen belül (state).

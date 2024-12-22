@@ -1,0 +1,26 @@
+.user-card {
+    border: 1px solid #ccc;
+    padding: 2vw;
+    margin: 1vw;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    float: left;
+}
+
+.user-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+    color: green;
+}
+
+.user-card p {
+    margin: 0;
+    color: #555;
+}
+
+.user-card ul {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style-type: disc;
+    padding-left: 20px;
+}
