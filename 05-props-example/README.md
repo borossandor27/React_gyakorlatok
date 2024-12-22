@@ -1,8 +1,17 @@
-# React + Vite
+# Props
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A komponensek újra felhasználhatósága miatt elengedhetetlen, hogy paramétrezni tudjuk őket. A paraméterként átadott értékeket nevezzük röviden `props`-nak
 
-Currently, two official plugins are available:
+# PropTypes
+Az átadott adatokat célszerű több szempont miatt is ellenőrízni. 
+A JavaScript dinamikus típusossága miatt nagyon hasznos, ha a kollégáknak is egyértelműen jelezzük a várt adat jellegét. Erre a célra használjuk a `PropTypes`-t. Az adattípus meghatározáson kívül nagyon sok egyéb ellenőrzési funkciót is kínál. A  `PropTypes` segít az egységes adatstruktúra betartásában.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```jsx
+import PropTypes from 'prop-types';
+```
+
+[!CAUTION]
+A PropTypes csak fejlesztési módban fut. A termelési (production) buildben nem ellenőrzi a props-okat.
+
+[!CAUTION]
+A kötelező props-ok (isRequired) elhagyása esetén a fejlesztői konzolban figyelmeztetést kapsz.
