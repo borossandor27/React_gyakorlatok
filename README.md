@@ -213,7 +213,154 @@ A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-
 ## Fejlettebb React Fogalmak
 
 ### Hook-ok
-Ismerd meg a React hook-okat, különösen a `useState` és `useEffect` hook-okat. Ezek a funkcionális komponensek állapotkezelésére és mellékhatások kezelésére szolgálnak.
+React-ben a hookok olyan speciális függvények, amelyek segítségével a funkcionális komponensekben állapotot kezelhetünk, és hozzáférhetünk az életciklushoz kapcsolódó funkciókhoz.
+
+[!IMPORTANT]
+### A `useState` hook
+Hsználni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mezők értékei, gomb állapota_), amelyek idővel változhatnak.
+```jsx
+import React, { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  );
+};
+```
+
+[!IMPORTANT]
+### A `useEffect` hook
+Elsődleges feladat az életciklus események kezelése (pl. komponens betöltésekor, frissítésekor, vagy eltávolításakor végrehajtandó műveletek).
+De használható API hívásokhoz, eseményfigyelők beállításához, időzítők indításához/tisztításához.
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+const Timer = () => {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prevTime) => prevTime + 1);
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup
+  }, []);
+
+  return <p>Time: {time}</p>;
+};
+```
+### `useContext` hook
+Feladata a globális állapot vagy adat megosztása komponensek között.
+Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használnia (_pl. felhasználói bejelentkezési állapot_).
+```jsx
+import React, { createContext, useContext } from 'react';
+
+const ThemeContext = createContext('light');
+
+const ThemedComponent = () => {
+  const theme = useContext(ThemeContext);
+  return <p>Current theme: {theme}</p>;
+};
+
+const App = () => {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemedComponent />
+    </ThemeContext.Provider>
+  );
+};
+```
+
+### `useReducer` hook
+ Összetett állapotkezeléshez (pl. több kapcsolódó állapot kezelése egy helyen).
+Használni kell, ha a komponens állapota bonyolult logikát igényel, vagy ha egy `useState` túl nagyra nő.
+
+```jsx
+import React, { useReducer } from 'react';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+};
+
+const Counter = () => {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+    </div>
+  );
+};
+```
+
+### `useMemo` hook
+Számított értékek átmeneti tárolására a teljesítmény javítása érdekében.
+Használd, ha egy függvény vagy érték újraszámítása művelet igényes.
+
+```jsx
+import React, { useMemo } from 'react';
+
+const ExpensiveCalculation = ({ num }) => {
+  const compute = useMemo(() => {
+    console.log('Computing...');
+    return num * 2;
+  }, [num]);
+
+  return <p>Computed value: {compute}</p>;
+};
+```
+
+### `useCallback` hook
+Feladata a függvények memorizálása, hogy ne hozzunk létre új függvényt minden renderelésnél.
+Jól használható, ha egy függvényt propként adsz át egy al-komponensnek, és szeretnéd elkerülni az új függvények létrejöttét.
+
+```jsx
+import React, { useState, useCallback } from 'react';
+
+const Button = React.memo(({ onClick }) => {
+  console.log('Button rendered');
+  return <button onClick={onClick}>Click me</button>;
+});
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+
+  return <Button onClick={handleClick} />;
+};
+```
+
+### Hookok összefoglalása
+
+| Hook | Funkció | Használati javaslatok |
+| --- | --- | --- |
+| `useState` | Állapot kezelés | Használati javaslatok |
+| `useEffect` | Életciklus események | API hívások, időzítők |
+| `useContext` | Globális állapot vagy adat megosztása | Témák, nyelvi beállítások |
+| `useReducer` | Összetett állapot kezelés | Bejelentkezési állapot, kosár adatok, ... |
+| `useMemo` | Számított értékek memorizálása | Teljesítmény optimalizálás |
+| `useCallback` | Függvények memorizálása | Propként átadott függvények |
+| `useRef` | DOM elemek kezelése vagy állandó tárolás | Fókuszkezelés, régi érték tárolása |
+| `useLayoutEffect` | DOM manipuláció közvetlen renderelés előtt | Méretre igazítás, vizuális manipuláció |
+
 
 ### Context API
 Tanuld meg, hogyan lehet megosztani adatokat a komponensek között anélkül, hogy props-okat kellene lefelé küldeni minden szinten.
