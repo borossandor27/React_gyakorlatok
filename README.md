@@ -184,6 +184,22 @@ function Garage() {
 ### Állapotok kezelése egy komponensen belül (`state`).
 React-ben az állapotkezelés a `useState` hook segítségével történik, amely lehetővé teszi, hogy a funkcionális komponensek saját állapotokat definiáljanak és azok változásait kezeljék. Amikor az állapot megváltozik, React automatikusan újrarendereli a komponenst, így az mindig az aktuális állapotot jeleníti meg.
 
+### Összetett adatok állapot kezelése
+Több összefüggő adat esetén használjunk objektumokat és ezek állapotához rendeljünk feldolgozást
+
+```jsx
+const [user, setUser] = useState({
+    name: 'Anna',
+    age: 28,
+    hobbies: ['reading', 'coding'],
+});
+
+// Életkor növelése
+const increaseAge = () => {
+    setUser({ ...user, age: user.age + 1 });
+};
+```
+
 ### Komponens Életciklus
 A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-eseményeire reagáljunk, például:
 
