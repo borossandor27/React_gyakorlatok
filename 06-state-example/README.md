@@ -11,7 +11,12 @@ const [currentAge, setCurrentAge] = useState(age);
         setCurrentAge(currentAge + 1);
     };
 ```
+### Hozzárendelés a gombhoz
+
+```jsx
+<button onClick={increaseAge}>Increase Age</button>
+```
+Az `onClick` esemény meghívja az `increaseAge` függvényt, amely növeli az `currentAge` értékét.
 
 ## Automatikus újrarenderelés
-
 React automatikusan újrarendereli a komponenst, ha egy állapot (`useState`) vagy `props` megváltozik. Ez biztosítja, hogy a felhasználói felület mindig az aktuális állapotot tükrözze.

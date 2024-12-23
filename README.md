@@ -185,7 +185,14 @@ function Garage() {
 React-ben az állapotkezelés a `useState` hook segítségével történik, amely lehetővé teszi, hogy a funkcionális komponensek saját állapotokat definiáljanak és azok változásait kezeljék. Amikor az állapot megváltozik, React automatikusan újrarendereli a komponenst, így az mindig az aktuális állapotot jeleníti meg.
 
 ### Komponens Életciklus
-Ismerd meg a komponensek életciklus metódusait, hogy megértsd, mikor és miért történnek bizonyos események a komponensekkel (pl. `componentDidMount`, `componentDidUpdate`).
+A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-eseményeire reagáljunk, például:
+
+- Komponens betöltésekor (mounting).
+- Állapot vagy props változásakor (updating).
+- Komponens eltávolításakor (unmounting). 
+
+
+(pl. `componentDidMount`, `componentDidUpdate`).
 
 ## Fejlettebb React Fogalmak
 

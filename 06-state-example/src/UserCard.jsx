@@ -1,6 +1,6 @@
 import  { useState } from 'react';
-import './index.css';
 import PropTypes from 'prop-types';
+import styles from './UserCard.module.css'
 
 const UserCard = ({ name, age, hobbies }) => {
     const [currentAge, setCurrentAge] = useState(age); // Állapot definiálása
@@ -11,7 +11,7 @@ const UserCard = ({ name, age, hobbies }) => {
     };
 
     return (
-        <div className="card">
+        <div className={styles["user-card"]}>
             <h2>{name}</h2>
             <p><strong>Age:</strong> {currentAge}</p>
             <button onClick={increaseAge}>Increase Age</button>
@@ -23,12 +23,6 @@ const UserCard = ({ name, age, hobbies }) => {
             </ul>
         </div>
     );
-};
-
-UserCard.defaultProps = {
-    name: 'Unknown User',
-    age: 0,
-    hobbies: [],
 };
 
 UserCard.propTypes = {
