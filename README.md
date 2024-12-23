@@ -210,12 +210,9 @@ A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-
 
 (pl. `componentDidMount`, `componentDidUpdate`).
 
-## Fejlettebb React Fogalmak
-
 ### Hook-ok
 React-ben a hookok olyan speciális függvények, amelyek segítségével a funkcionális komponensekben állapotot kezelhetünk, és hozzáférhetünk az életciklushoz kapcsolódó funkciókhoz.
 
-[!IMPORTANT]
 ### A `useState` hook
 Hsználni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mezők értékei, gomb állapota_), amelyek idővel változhatnak.
 ```jsx
@@ -233,7 +230,6 @@ const Counter = () => {
 };
 ```
 
-[!IMPORTANT]
 ### A `useEffect` hook
 Elsődleges feladat az életciklus események kezelése (pl. komponens betöltésekor, frissítésekor, vagy eltávolításakor végrehajtandó műveletek).
 De használható API hívásokhoz, eseményfigyelők beállításához, időzítők indításához/tisztításához.
@@ -345,6 +341,44 @@ const App = () => {
   }, []);
 
   return <Button onClick={handleClick} />;
+};
+```
+
+### `useRef` hook
+DOM elemek elérésére vagy állandó értékek tárolására újrarenderelés nélkül.
+Ha manuálisan szeretnél DOM elemet kezelni, vagy ha olyan adatot szeretnél tárolni, amely nem vált ki új renderelést.
+```jsx
+import React, { useRef } from 'react';
+
+const InputFocus = () => {
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+};
+```
+
+### `useLayoutEffect` hook
+Használható a DOM manipuláció előtt, de általában csak speciális esetekben szükséges.
+```jsx
+import React, { useLayoutEffect, useRef } from 'react';
+
+const LayoutEffectExample = () => {
+  const ref = useRef();
+
+  useLayoutEffect(() => {
+    ref.current.style.color = 'red';
+  }, []);
+
+  return <div ref={ref}>This text is red!</div>;
 };
 ```
 
