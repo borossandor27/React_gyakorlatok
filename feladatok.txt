@@ -1,0 +1,15 @@
+
+
+    Egyszerű weboldal készítése: Kezdd egy alapvető weboldallal, amely tartalmaz egy navigációs sávot, néhány oldalt és alapvető stílusokat.
+
+    Todo lista alkalmazás: Készíts egy todo lista alkalmazást, ahol a felhasználók hozzáadhatnak, szerkeszthetnek és törölhetnek feladatokat. Ez segít megérteni az állapotkezelést és az eseménykezelést.
+
+    API integráció: Hozz létre egy alkalmazást, amely adatokat kér le egy külső API-ból (például időjárás vagy hírek). Ez segít megérteni az aszinkron műveleteket és az adatkezelést.
+
+    Űrlapkezelés: Készíts egy komplex űrlapot, amely validációkat és hibakezelést tartalmaz. Ez segít a felhasználói bevitel kezelésének elsajátításában.
+
+    React Router használata: Hozz létre egy többoldalas alkalmazást a React Router segítségével, hogy megértsd a kliensoldali navigációt.
+
+    Állapotkezelés: Tanuld meg a Redux vagy a Context API használatát egy nagyobb alkalmazásban, hogy jobban megértsd az állapotkezelést nagyobb projektekben.
+
+    Stílusok és CSS-in-JS: Próbáld ki a styled-components vagy az Emotion használatát, hogy megértsd a CSS-in-JS koncepcióját.

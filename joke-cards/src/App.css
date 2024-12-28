@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.joke-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.joke-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
