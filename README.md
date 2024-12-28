@@ -467,4 +467,5 @@ A JavaScript és a React gyorsan változó világában fontos, hogy naprakész m
 
 - [The Stack Overflow Blog](https://stackoverflow.blog/react/)
 - [Reddit](https://www.reddit.com/r/reactjs/)
-
+- [Thinking in React](https://react.dev/learn/thinking-in-react)
+- [ReactJS Best Practices for Developers](https://dev.to/infrasity-learning/reactjs-best-practices-for-developers-5gjf)
