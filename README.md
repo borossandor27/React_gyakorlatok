@@ -442,5 +442,25 @@ Tanuld meg az alkalmazás teljes folyamatainak tesztelését eszközök segíts�
 ## Projektek Építése
 Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb projektekkel, mint például egy teendő lista, majd haladj komplexebb alkalmazások felé, mint például egy e-kereskedelmi oldal vagy egy blog platform.
 
+### Online kódolási lehetőségek
+
+| Funkció/Jellemző | CodeSandbox | StackBlitz | React Playground | Create React App Online |
+|---|---|---|---|---|
+| Alapvető funkciók |  |  |  |  |
+| Kód szerkesztő | Kiváló, sokféle nyelv támogatásával | Kiváló, gyors és intuitív | Egyszerű, de hatékony | Beépített a létrehozott projektbe |
+| Élő előnézet | Valós idejű frissítés | Valós idejű frissítés | Valós idejű frissítés | Beépített a fejlesztési szerverbe |
+| Debugger | Beépített debugger | Beépített debugger | Néhány esetben külső debugger szükséges | Chrome DevTools |
+| Tematizálás | Számos sablon és téma | Testre szabható megjelenés | Alapszintű testreszabás | Alapszintű testreszabás |
+| Integrációk |  |  |  |  |
+| Verziókövetés | Git integráció | Git integráció | Korlátozott támogatás | Git integráció |
+| Build eszközök | Webpack, Babel, stb. | Webpack, Babel, stb. | Előre konfigurált beállítások | Webpack, Babel, stb. |
+| Külső könyvtárak | NPM, Yarn támogatás | NPM, Yarn támogatás | Korlátozott támogatás | NPM, Yarn támogatás |
+| Sebesség |  |  |  |  |
+| Indítási idő | Gyors | Nagyon gyors | Gyors | Némi időt igényel a projekt létrehozása |
+| Frissítési idő | Valós idejű | Valós idejű | Valós idejű | Valós idejű |
+| Megosztás |  |  |  |  |
+| Projekt megosztása | Könnyű megosztás, verziókövetéssel | Könnyű megosztás, verziókövetéssel | Egyszerű URL megosztás | Az elkészült alkalmazás deploy-ozása |
+| Együttműködés | Valós idejű együttműködés | Valós idejű együttműködés | Korlátozott együttműködés | Nem támogatja az egyidejű szerkesztést |
+
 ## Frissítések és Új Technológiák Követése
 A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, mik az új trendek és best practice-ek.
