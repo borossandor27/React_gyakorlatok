@@ -444,7 +444,7 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 
 ### Online kódolási lehetőségek
 
-| Funkció/Jellemző | CodeSandbox | StackBlitz | React Playground | Create React App Online |
+| Funkció/Jellemző | [CodeSandbox](https://codesandbox.io/) | [StackBlitz](https://stackblitz.com/) | [React Playground](https://playcode.io/react) |[Create React App Online](https://create-react-app.dev/) |
 |---|---|---|---|---|
 | Alapvető funkciók |  |  |  |  |
 | Kód szerkesztő | Kiváló, sokféle nyelv támogatásával | Kiváló, gyors és intuitív | Egyszerű, de hatékony | Beépített a létrehozott projektbe |
@@ -464,3 +464,7 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 
 ## Frissítések és Új Technológiák Követése
 A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, mik az új trendek és best practice-ek.
+
+- [The Stack Overflow Blog](https://stackoverflow.blog/react/)
+- [Reddit](https://www.reddit.com/r/reactjs/)
+
