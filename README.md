@@ -463,9 +463,12 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 | Együttműködés | Valós idejű együttműködés | Valós idejű együttműködés | Korlátozott együttműködés | Nem támogatja az egyidejű szerkesztést |
 
 ## Frissítések és Új Technológiák Követése
-A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, mik az új trendek és best practice-ek.
+A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. 
+Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, 
+mik az új trendek és best practice-ek.
 
 - [The Stack Overflow Blog](https://stackoverflow.blog/react/)
 - [Reddit](https://www.reddit.com/r/reactjs/)
 - [Thinking in React](https://react.dev/learn/thinking-in-react)
 - [ReactJS Best Practices for Developers](https://dev.to/infrasity-learning/reactjs-best-practices-for-developers-5gjf)
+- ...
