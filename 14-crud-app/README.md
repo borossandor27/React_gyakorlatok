@@ -35,10 +35,15 @@ POST [új felhasználó](https://api-generator.retool.com/E6LSEs/user)
 PUT [Felhasználó adatainak a módosítása](https://api-generator.retool.com/E6LSEs/user/1)
 DELETE [Felhasználó adatainak a törlése](https://api-generator.retool.com/E6LSEs/user/1)
 
+# RestAPI kezelés
 ```bash
-npm install react-router-dom
 npm install axios
 ```
+# Routing
+```bash
+npm install react-router-dom
+```
+# Font Awesome
 ```bash
 npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
 ```
@@ -46,3 +51,10 @@ npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 ```
+
+# BootStrap
+```bash
+npm install bootstrap
+```
+```jsx
+import 'bootstrap/dist/css/bootstrap.min.css';

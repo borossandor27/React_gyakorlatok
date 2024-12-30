@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './UserList.css';
 
 const UserList = () => {
@@ -26,6 +27,7 @@ const UserList = () => {
                         <th>Home</th>
                         <th>View</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,10 +38,13 @@ const UserList = () => {
                             <td>{user.email}</td>
                             <td>{user.home}</td>
                             <td>
-                                <Link to={`/user/${user.id}`}><FontAwesomeIcon icon={faEye} /> </Link>
+                                <Link className="btn btn-outline-secondary" to={`/user/${user.id}`}><FontAwesomeIcon icon={faEye} /> </Link>
                             </td>
                             <td>
-                                <Link to={`/edit-user/${user.id}`}><FontAwesomeIcon icon={faPenToSquare} /> </Link>
+                                <Link  className="btn btn-outline-success" to={`/edit-user/${user.id}`}><FontAwesomeIcon icon={faPenToSquare} /> </Link>
+                            </td>
+                            <td>
+                                <Link className="btn btn-outline-danger" to={`/delete-user/${user.id}`}><FontAwesomeIcon icon={faTrash} /> </Link>
                             </td>
                         </tr>
                     ))}
