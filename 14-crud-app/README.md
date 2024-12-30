@@ -20,20 +20,22 @@ API végpontok elérése az axios és ```useState``` segítségével. Különál
 ***AddUser:*** Új felhasználó hozzáadására vagy meglévő módosítására szolgáló űrlap.
 ***EditUser:*** Felhasználó adatainak módosítása.
 
-user JSON:
+## user adatok
+```json
 {
     "id": 2,
     "home": "Cape Girardeau, Missouri, United States",
     "name": "Anatollo Lavall",
     "email": "ddevanny3h@senate.gov"
 }
-
-[base URL](https://retoolapi.dev/E6LSEs/user)
-GET [Összes felhasználó lekérdezése](https://api-generator.retool.com/E6LSEs/user)
-GET [Felhasználó id alapján](https://api-generator.retool.com/E6LSEs/user/1)
-POST [új felhasználó](https://api-generator.retool.com/E6LSEs/user)
-PUT [Felhasználó adatainak a módosítása](https://api-generator.retool.com/E6LSEs/user/1)
-DELETE [Felhasználó adatainak a törlése](https://api-generator.retool.com/E6LSEs/user/1)
+```
+# Végpontok
+- [base URL](https://retoolapi.dev/E6LSEs/user)
+- GET [Összes felhasználó lekérdezése](https://api-generator.retool.com/E6LSEs/user)
+- GET [Felhasználó id alapján](https://api-generator.retool.com/E6LSEs/user/1)
+- POST [új felhasználó](https://api-generator.retool.com/E6LSEs/user)
+- PUT [Felhasználó adatainak a módosítása](https://api-generator.retool.com/E6LSEs/user/1)
+- DELETE [Felhasználó adatainak a törlése](https://api-generator.retool.com/E6LSEs/user/1)
 
 # RestAPI kezelés
 ```bash
