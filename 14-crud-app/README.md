@@ -2,8 +2,17 @@
 
 API végpontok elérése az axios és ```useState``` segítségével. Különálló User osztály helyett API-kezelő függvények. Osztályt akkor lenne célszerű készíteni, ha lennének származtatott adatok és bonyolult ellenőrzések. 
 
-## Főbb funkciók
+## user adatok
+```json
+{
+    "id": 2,
+    "home": "Cape Girardeau, Missouri, United States",
+    "name": "Anatollo Lavall",
+    "email": "ddevanny3h@senate.gov"
+}
+```
 
+## Főbb funkciók
 - Felhasználók listázása – ```GET /user```
 - Felhasználó adatainak a megjelenítése – ```GET /user/:id```
 - Új felhasználó hozzáadása – ```POST /user```
@@ -20,15 +29,6 @@ API végpontok elérése az axios és ```useState``` segítségével. Különál
 ***AddUser:*** Új felhasználó hozzáadására vagy meglévő módosítására szolgáló űrlap.
 ***EditUser:*** Felhasználó adatainak módosítása.
 
-## user adatok
-```json
-{
-    "id": 2,
-    "home": "Cape Girardeau, Missouri, United States",
-    "name": "Anatollo Lavall",
-    "email": "ddevanny3h@senate.gov"
-}
-```
 # Végpontok
 - [base URL](https://retoolapi.dev/E6LSEs/user)
 - GET [Összes felhasználó lekérdezése](https://api-generator.retool.com/E6LSEs/user)
