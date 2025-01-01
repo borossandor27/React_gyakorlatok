@@ -1,3 +1,5 @@
+import {updateUser} from '../api';
+import UserForm from './UserForm';
 const EditUser = () => {
     return (
         <div>

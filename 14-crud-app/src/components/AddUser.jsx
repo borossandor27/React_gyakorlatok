@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './AddUser.css';
 import { useState } from 'react';
 import { addUser } from '../api';
