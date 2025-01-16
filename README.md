@@ -21,7 +21,7 @@ A React JavaScript alapú, így nélkülözhetetlenek a JavaScript ismeretek. pl
 ## React Alapok
 
 ### Létrehozás
-```PowerShell
+```Shell
 npm create vite@latest my-react-app -- --template react
 cd my-react-app
 npm install
