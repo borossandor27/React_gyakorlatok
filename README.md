@@ -29,10 +29,10 @@ npm run dev
 ```
 
 Már többször előfordult, hogy a policy letiltotta a futást a `File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.` hibaüzenettel. Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a 
-```shell
+```PowerShell
   Set-ExecutionPolicy RemoteSigned
 ```
-Paranccsal engedélyt adhatunk a számára.
+paranccsal engedélyt adhatunk a node.js számára a futáshoz.
 
 Sikeres futatás után az alábbi könyvtárszerkezetet kapjuk:
 ```
