@@ -28,7 +28,13 @@ npm install
 npm run dev
 ```
 
-Az alábbi könyvtárszerkezetet kapjuk:
+Már többször előfordult, hogy a policy letiltotta a futást a `File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.` hibaüzenettel. Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a 
+```shell
+  Set-ExecutionPolicy RemoteSigned
+```
+Paranccsal engedélyt adhatunk a számára.
+
+Sikeres futatás után az alábbi könyvtárszerkezetet kapjuk:
 ```
 hello-vite-app/
 ├── node_modules/
