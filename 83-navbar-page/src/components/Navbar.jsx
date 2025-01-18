@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const Nav = styled.nav`
   background: #333;
   padding: 10px;
+  width: 100%;
 `;
 
 const NavLinkStyled = styled(NavLink)`
