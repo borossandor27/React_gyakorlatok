@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/*
+A CSS-szelektorokat öt kategóriába sorolhatjuk:
 
-function App() {
-  const [count, setCount] = useState(0)
+- Egyszerű kiválasztók (elemek kiválasztása név, azonosító, osztály alapján)
+- Kombinátorválasztók (az elemek kiválasztása a köztük lévő konkrét kapcsolat alapján)
+- Pszeudoosztály szelektorok (elemek kiválasztása egy bizonyos állapot alapján)
+- Pszeudoelem-választók (egy elem egy részének kijelölése és stílusa)
+- Attribútumválasztók (elemek kiválasztása attribútum vagy attribútumérték alapján)
+*/
+import './App.css';
+import ButtonPszeudo from './components/ButtonPszeudo';
+import ButtonBase from './components/ButtonBase';
+import ButtonProps from './components/ButtonProps';
+import ListUnordered from './components/ListUnordered';
+// A CSS-in-JS egy olyan technológia, amely lehetővé teszi a CSS kódok JavaScript kódokkal való kezelését.
+// Styled-components segítségével a CSS kódokat a komponensekhez rendelhetjük, így a CSS kódokat a komponensekkel együtt tárolhatjuk.
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+export default function App() {
+  const fruits = ['Apple', 'Banana', 'Cherry', 'Dates'];
+  const vegetables = ['Carrot', 'Potato', 'Spinach', 'Broccoli'];
+  
+  return  (
+    <div>
+      <ButtonBase>Standard CSS</ButtonBase>
+      <ButtonProps primary>Props</ButtonProps>
+      <ButtonProps>Props</ButtonProps>
+      <ButtonPszeudo primary>Pszeudo</ButtonPszeudo>
+      <ButtonPszeudo>Pszeudo</ButtonPszeudo>
+      <h1>Fruits</h1>
+      <ListUnordered items={fruits} />
+
+      <h1>Vegetables</h1>
+      <ListUnordered items={vegetables} />
+    </div>
   )
+  
 }
-
-export default App
