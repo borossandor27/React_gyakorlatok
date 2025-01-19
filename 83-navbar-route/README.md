@@ -1,7 +1,7 @@
 # Navbar
 
-Szükséges csomag:
+## Szükséges csomagok
 
-```Javascript
+```shell
 npm install react-router-dom styled-components
 ```

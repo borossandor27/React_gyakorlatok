@@ -22,7 +22,9 @@ const ListUnordered = ({ items }) => {
     </List>
   );
 };
+
 ListUnordered.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 export default ListUnordered;
