@@ -20,7 +20,7 @@ function App() {
         </section>
         <section id="about" className="section">
           <h2>Rólunk</h2>
-          <p>Ezen az oldalon egyszerű példák vannak a React és CSS együttműködésére.</p>
+          <p>Ez az oldal egyszerű példa arra, hogy a React-ben hogyan használhatjuk az external CSS fájlt.</p>
         </section>
         <section id="contact" className="section">
           <h2>Kapcsolat</h2>
