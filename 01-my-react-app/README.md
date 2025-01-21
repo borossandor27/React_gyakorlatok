@@ -28,11 +28,9 @@ A minta alkalmazás minden eleme itt található. A felhasználó számára lát
 
 
 ## Tartalom formázása
-
-A Vite/React alkalmazásban az index.css és az App.css segítségével tudunk formázni. Ezek két különböző szerepet töltenek be. A felosztásuk célja, hogy a stílusokat logikusan elkülönítsük, és a fejlesztést átláthatóbbá tegyük.
+A Vite/React alkalmazásban a `index.css` és az `App.css` segítségével tudunk formázni. Ezek két különböző szerepet töltenek be. A felosztásuk célja, hogy a stílusokat logikusan elkülönítsük, és a fejlesztést átláthatóbbá tegyük.
 
 ### `index.css` – Globális stílusok
-
 Ebben olyan formázásokat helyezünk el, amelyek az egész alkalmazásra érvényesek. Alapértelmezett betűtípusok, színek, háttérszínek, layout-ok és konténer stílusok. Már a `main.jsx`-ben importáljuk, hogy minden komponens számára elérhetőek legyenek. Pl.:
 
 ```CSS 
@@ -50,8 +48,7 @@ h1, h2, h3 {
 ```
 
 ### `App.css` – Komponens-szintű stílusok
-
-Lehetőség van az adott komponenshez tartozó formázások komponens mellé helyezésére, amelyet importálunk a komponensbe. Pl.: a minta alkalmazásban lévő App komponenshez tartozó formázásokat el tudjuk helyezni az App.css fájlban. 
+Lehetőség van az adott komponenshez tartozó formázások komponens mellé helyezésére, amelyet importálunk a komponensbe. Jellemzően az `App.jsx`-ben szokás létrehozni a dokumentum főbb elemeit `header`-t, `footer`-t, `main`-t, ... * Pl.: az **App** komponenshez tartozó formázásokat el tudjuk helyezni az `App.css` fájlban. * 
 
 ```CSS
 /* App.css */
@@ -69,4 +66,14 @@ Lehetőség van az adott komponenshez tartozó formázások komponens mellé hel
     color: white;
 }
 ```
+
+## Komponensek formázása
+Elég sok lehetőség közül választhatunk
+
+### modul szerűen
+A komponens mellé egy css fájlt helyezünk `komponens_neve.modul.css` mellé és a komponensbe importáljuk.
+
+### CSS-in-JS
+A komponens létrehozásakor megadjuk a formázásra vonatkozó szabályokat is. (*`styled-components`*)
+
 

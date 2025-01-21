@@ -6,6 +6,9 @@ const Nav = styled.nav`
   background: #333;
   padding: 10px;
   width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const NavLinkStyled = styled(NavLink)`
