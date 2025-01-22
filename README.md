@@ -216,7 +216,7 @@ A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-
 
 (pl. `componentDidMount`, `componentDidUpdate`).
 
-### Hook-ok
+### [Hook-ok](https://react.dev/reference/react/hooks)
 React-ben a hookok olyan speciális függvények, amelyek segítségével a funkcionális komponensekben állapotot kezelhetünk, és hozzáférhetünk az életciklushoz kapcsolódó funkciókhoz.
 
 ### A `useState` hook
