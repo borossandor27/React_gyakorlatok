@@ -24,7 +24,7 @@ A böngésző **DOM** (*Document Object Model*) és a **ReactDOM** is
 ugyanazokat a feladatokat (*elemek hierarchikus nyilvántartása, 
 állapotaik változásának a megjelenítése*), de teljesen más technikákat használva.
 A felhasználói interakciókat előbb a ReactDOM kezeli és átvezeti
-a böngésző Virtuáls DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
+a böngésző DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
 
 ### Létrehozás
 ```Shell
