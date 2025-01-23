@@ -12,13 +12,14 @@ A stílusok kezeléséhez szükséges alapok. A React-ben gyakran használnak CS
 ### JavaScript
 A React JavaScript alapú, így nélkülözhetetlenek a JavaScript ismeretek. pl.:
 - változók deklarálása
-- arrow function-ek
-- destrukturálás (tömbökből vagy objektumokból értékek kiemelése)
-- template literals stb.
-- Aszinkron JavaScript (Promise-ok, async/await)
-- Array és Object metódusok (pl. map, filter, reduce)
+- arrow function-ek (```javascript let myFunction = (a, b) => a * b;```)
+- destrukturálás (*tömbökből vagy objektumokból értékek kiemelése*)
+- template literals ```javascript `string text ${expression} string text` ```
+- Aszinkron JavaScript (*Promise-ok, async/await, ...*)
+- Array és Object metódusok (*pl. map, filter, reduce, ...*)
 
 ## React Alapok
+A React megértésében kulcsfontosságú a ReactDOM megértése. A böngésző **DOM** (*Document Object Model*) és a ReactDOM
 
 ### Létrehozás
 ```Shell
