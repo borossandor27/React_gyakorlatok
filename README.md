@@ -21,8 +21,7 @@ A React JavaScript alapú, így nélkülözhetetlenek a JavaScript ismeretek. pl
 ## React Alapok
 A React megértésében kulcsfontosságú a ReactDOM megértése. 
 A böngésző **DOM** (*Document Object Model*) és a **ReactDOM** is 
-ugyanazokat a feladatokat (*elemek hierarchikus nyilvántartása, 
-állapotaik változásának a megjelenítése*), de teljesen más technikákat használva.
+ugyanazokat a feladatokat (*a weboldal felhasználói felületét (UI) kezelje és frissítse.*), de teljesen más technikákat használva.
 A felhasználói interakciókat előbb a ReactDOM kezeli és átvezeti
 a böngésző DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
 
