@@ -23,11 +23,19 @@ A React megértésében kulcsfontosságú a ReactDOM megértése.
 A böngésző **DOM** (*Document Object Model*) és a **ReactDOM** is 
 ugyanazokat a feladatokat (*elemek hierarchikus nyilvántartása, 
 állapotaik változásának a megjelenítése*), de teljesen más technikákat használva.
-
+A felhasználói interakciókat előbb a ReactDOM kezeli és átvezeti
+a böngésző Virtuáls DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
 
 ### Létrehozás
 ```Shell
-npm create vite@latest my-react-app -- --template react
+npm create vite@latest my-react-app 
+cd my-react-app
+npm install
+npm run dev
+```
+vagy
+```Shell
+npx create-vite@latest my-react-app
 cd my-react-app
 npm install
 npm run dev
@@ -219,7 +227,7 @@ A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-
 - Komponens eltávolításakor (unmounting). 
 
 
-(pl. `componentDidMount`, `componentDidUpdate`).
+(*pl. `componentDidMount`, `componentDidUpdate`*).
 
 ### [Hook-ok](https://react.dev/reference/react/hooks)
 React-ben a hookok olyan speciális függvények, amelyek segítségével a funkcionális komponensekben állapotot kezelhetünk, és hozzáférhetünk az életciklushoz kapcsolódó funkciókhoz.
