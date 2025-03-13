@@ -1,12 +1,7 @@
-# React + Vite
+# useState használata több mezőhöz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ React-ban az űrlapelemek *(input, textarea, select)* értékének frissítéséhez szükséges az `onChange` eseménykezelő használata, hogy a felhasználói bevitel megjelenjen az állapotban (`state`), és ezáltal a React-DOM frissüljön.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ Mivel a React űrlapelemei kontrollált komponensekként működnek, az állapot (`useState`) és az input mező értéke (`value attribútum`) össze van kötve.
+> [!WARNING]
+> Ha nincs `onChange`, a mező értéke nem frissül megfelelően.

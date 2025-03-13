@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
-const App = () => {
-  const [formData, setFormData] = useState({ name: "", email: "" });
+const formReducer = (state, event) => {
+  return {
+    ...state,
+    [event.name]: event.value,
+  };
+};
+
+const FormWithReducer = () => {
+  const [formData, dispatch] = useReducer(formReducer, { name: "", email: "" });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    dispatch({ name: e.target.name, value: e.target.value });
   };
 
   return (
@@ -24,4 +28,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default FormWithReducer;
