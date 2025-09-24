@@ -221,8 +221,9 @@ const increaseAge = () => {
 ### Komponens Életciklus
 A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-eseményeire reagáljunk, például:
 
-- Komponens betöltésekor (mounting).
-- Állapot vagy props változásakor (updating).
+- Komponens betöltésekor (mounting). `[]` → egyszer fut (*adatlekérés tipikusan így megy*)
+- nincs [] → minden render után fut.
+- Állapot vagy props változásakor (updating). `[valtozo]` → fut, ha valtozo megváltozik.
 - Komponens eltávolításakor (unmounting). 
 
 
@@ -269,9 +270,31 @@ const Timer = () => {
   return <p>Time: {time}</p>;
 };
 ```
+
+```jsx
+useEffect(() => {
+   console.log("lefut egyszer, amikor a komponens betöltődik");
+}, []);
+```
+
+```jsx
+useEffect(() => {
+   console.log("minden render után lefut");
+});
+```
+
+```jsx
+useEffect(() => {
+   console.log("lefut, amikor változik a 'query'");
+}, [query]);
+```
+
+
 ### `useContext` hook
+
 Feladata a globális állapot vagy adat megosztása komponensek között.
 Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használnia (_pl. felhasználói bejelentkezési állapot_).
+
 ```jsx
 import React, { createContext, useContext } from 'react';
 
@@ -292,6 +315,7 @@ const App = () => {
 ```
 
 ### `useReducer` hook
+
  Összetett állapotkezeléshez (pl. több kapcsolódó állapot kezelése egy helyen).
 Használni kell, ha a komponens állapota bonyolult logikát igényel, vagy ha egy `useState` túl nagyra nő.
 
@@ -323,6 +347,7 @@ const Counter = () => {
 ```
 
 ### `useMemo` hook
+
 Számított értékek átmeneti tárolására a teljesítmény javítása érdekében.
 Használd, ha egy függvény vagy érték újraszámítása művelet igényes.
 
@@ -340,6 +365,7 @@ const ExpensiveCalculation = ({ num }) => {
 ```
 
 ### `useCallback` hook
+
 Feladata a függvények memorizálása, hogy ne hozzunk létre új függvényt minden renderelésnél.
 Jól használható, ha egy függvényt propként adsz át egy al-komponensnek, és szeretnéd elkerülni az új függvények létrejöttét.
 
@@ -363,8 +389,10 @@ const App = () => {
 ```
 
 ### `useRef` hook
+
 DOM elemek elérésére vagy állandó értékek tárolására újrarenderelés nélkül.
 Ha manuálisan szeretnél DOM elemet kezelni, vagy ha olyan adatot szeretnél tárolni, amely nem vált ki új renderelést.
+
 ```jsx
 import React, { useRef } from 'react';
 
@@ -385,7 +413,9 @@ const InputFocus = () => {
 ```
 
 ### `useLayoutEffect` hook
+
 Használható a DOM manipuláció előtt, de általában csak speciális esetekben szükséges.
+
 ```jsx
 import React, { useLayoutEffect, useRef } from 'react';
 
@@ -415,49 +445,83 @@ const LayoutEffectExample = () => {
 
 
 ### Context API
+
 Tanuld meg, hogyan lehet megosztani adatokat a komponensek között anélkül, hogy props-okat kellene lefelé küldeni minden szinten.
 
 ### React Router
+
 Ismerd meg az útvonalkezelést, hogy hogyan lehet különböző oldalakra navigálni egy egyoldalas alkalmazásban (SPA).
 
 ## Állapotkezelés
 
 ### Redux vagy MobX
+
 Tanuld meg, hogyan lehet komplex állapotokat kezelni egy alkalmazásban. A Redux a legnépszerűbb állapotkezelő könyvtár Reacthez, de az alternatívák, mint a MobX vagy a Context API is érdemesek lehetnek a tanulásra.
 
 ## Styling Technológiák
 
 ### CSS-in-JS
+
 Tanuld meg, hogyan lehet CSS-t írni JavaScript-ben, például a Styled Components vagy az Emotion segítségével.
 
 ### CSS keretrendszerek
+
 Ismerkedj meg néhány népszerű CSS keretrendszerrel, mint a Bootstrap vagy a Tailwind CSS, amelyeket React-tel gyakran használnak.
 
 ## Integrációk és API Hívások
 
 ### REST API és GraphQL
+
 Ismerd meg, hogyan hívj meg külső API-kat, és hogyan dolgozz fel adatokat React alkalmazásban. A fetch API és az Axios a két leggyakrabban használt megoldás a REST API-khoz, míg az Apollo Client a legnépszerűbb a GraphQL-hez.
 
 ## Build eszközök és deployment
 
 ### Create React App
+
 Kezdj ezzel az eszközzel, amely gyorsan felállít egy React fejlesztői környezetet minden szükséges konfigurációval.
 
 ### Webpack és Babel
+
 Érdemes megérteni a modern JavaScript alkalmazások felépítéséhez és fordításához használt eszközöket.
 
 ### Deployment
+
 Tanuld meg, hogyan lehet a React alkalmazásokat különböző környezetekbe deploy-olni, például Netlify, Vercel, Heroku vagy saját szerverre.
 
 ## Tesztelés
 
-### Unit tesztelés
-Tanuld meg a komponensek unit tesztelését, például a Jest és a React Testing Library segítségével.
+A program fejlesztése során folyamatosan teszteled az elkészült kódot, ezért
+sokan feleslegesnek tartják a tesztesetek készítését. Kisebb, egyszeri, egyszemélyes alkalmazások esetén én is feleslegesnek tartom. 
 
-### End-to-End tesztelés
-Tanuld meg az alkalmazás teljes folyamatainak tesztelését eszközök segítségével, mint például a Cypress.
+Abban az esetben, ha nagyobb és hosszútávú a project, több szempontból is hasznos:
+
+- **Dokumentációként szolgálhat** a megrendelő felé és a később bekapcsolódó kollégák számára
+- **Hibák megelőzése és feltárása** a későbbi módosítások ellenőrzése - amelyet esetleg már más programozók végeztek - biztosítja a hosszú távú megbízhatóságot
+- **Kódminőség javítása:** A tesztelés rákényszerít strukturált, olvasható és karbantartható kód írására.
+
+### Egységtesztelés *(Unit Testing)*
+
+Kis kódrészek (függvények, osztályok) tesztelése elszigetelten.
+
+### Integrációs tesztelés *(Integration Testing)*
+
+Több modul vagy komponens együttműködését teszteli.
+Például egy API hívás eredményének tesztelése, amely adatbázist is elér.
+
+### Végponti *(end-to-end, E2E)* tesztelés
+
+A teljes alkalmazás működését ellenőrzi a felhasználó szemszögéből. Valamely  
+a felhasználó számára fontosabb műveletsort vizsgálunk
+
+## JavaScript teszt framework-ök
+
+- [**Jest**](https://jestjs.io) - Egységtesztelés, snapshot teszt, integrációs teszt. React-hez ideális *(Készítette: Facebook (Meta))*
+- [**Mocha**](https://mochajs.org) - Egység- és integrációs teszt keretrendszer
+- [**Vitest**](https://vitest.dev/) - Modern egységteszt keretrendszer *Készítette: Vite közösség*
+- [**Cypress**](https://www.cypress.io/) - End-to-End (`E2E`) tesztelés
 
 ## Projektek Építése
+
 Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb projektekkel, mint például egy teendő lista, majd haladj komplexebb alkalmazások felé, mint például egy e-kereskedelmi oldal vagy egy blog platform.
 
 ### Online kódolási lehetőségek
@@ -481,6 +545,7 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 | Együttműködés | Valós idejű együttműködés | Valós idejű együttműködés | Korlátozott együttműködés | Nem támogatja az egyidejű szerkesztést |
 
 ## Frissítések és Új Technológiák Követése
+
 A JavaScript és a React gyorsan változó világában fontos, hogy naprakész maradj. 
 Kövess blogokat, podcastokat, és React konferenciákat, hogy megtudd, 
 mik az új trendek és best practice-ek.
