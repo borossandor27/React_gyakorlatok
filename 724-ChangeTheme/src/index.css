@@ -1,0 +1,40 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+body {
+  margin: 0;
+ padding: 2rem;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin: 2rem;
+}
+body.light {
+  background-color: #fff;
+  color: #222;
+}
+
+body.dark {
+  background-color: #222;
+  color: #fff;
+}
+.ButtonPanel h2 {
+  margin: 0;
+  text-align: center;
+}

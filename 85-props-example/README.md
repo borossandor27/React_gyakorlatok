@@ -1,9 +1,10 @@
 # Props
 
-A komponensek újra felhasználhatósága miatt elengedhetetlen, hogy paramétrezni tudjuk őket. A paraméterként átadott értékeket nevezzük röviden `props`-nak
+A komponensek újra felhasználhatósága miatt elengedhetetlen, hogy paramétrezni tudjuk őket. A paraméterként átadott értékeket nevezzük röviden `props`-nak *(properties?)*
 
-# PropTypes
-Az átadott adatokat célszerű több szempont miatt is ellenőrízni. 
+## PropTypes
+
+Az átadott adatokat célszerű több szempont miatt is ellenőrízni.
 A JavaScript dinamikus típusossága miatt nagyon hasznos, ha a kollégáknak is egyértelműen jelezzük a várt adat jellegét. Erre a célra használjuk a `PropTypes`-t. Az adattípus meghatározáson kívül nagyon sok egyéb ellenőrzési funkciót is kínál. A  `PropTypes` segít az egységes adatstruktúra betartásában.
 
 ```jsx
