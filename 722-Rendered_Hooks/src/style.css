@@ -1,0 +1,35 @@
+main {
+    display: flex;
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    padding: 1rem;
+    background: #f4f4f4;
+}
+
+.todo-list {
+    flex: 1;
+    padding: 1rem;
+}
+
+.form {
+    margin-bottom: 1rem;
+}
+.todo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.todo-item input {
+    margin-right: 0.5rem;
+}
+aside {
+    border-right: 1px solid #ccc;
+}
+aside a {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: #333;
+}
