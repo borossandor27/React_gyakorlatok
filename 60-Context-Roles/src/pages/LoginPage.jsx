@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useAuth } from '../components/AuthContext.jsx'; // Adjust the import path as needed
+import { useAuth } from '../components/AuthContext.jsx'; 
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const LoginPage = () => {
     } else {
       // Sikeres bejelentkezés - itt lehet átirányítani vagy más műveletet végezni
       console.log(result.message);
-      // Például: navigate('/dashboard');
+      navigate('/'); // Például átirányítás a főoldalra
     }
   };
 

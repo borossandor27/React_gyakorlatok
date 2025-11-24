@@ -1,10 +1,27 @@
+//import { useAuth } from "../components/AuthContext";
+
 const AboutPage = () => {
-    return (
-        <div>
-            <h1>Az alkalmazásról</h1>   
-            <p>Ez az alkalmazás a felhasználói szerepkörök kezelését demonstrálja React Context segítségével.</p>
-        </div>
-    );
-}
+  const { user, logout } = useAuth();
+
+  return (
+    <>
+      <div>
+        {user.isLoggedIn ? (
+          <div>
+            <h1>Üdvözöljük, {user.userName}!</h1>
+            <p>Szerepkör: {user.role}</p>
+            <button onClick={logout}>Kijelentkezés</button>
+          </div>
+        ) : (
+          <p>Kérjük, jelentkezzen be!</p>
+        )}
+      </div>
+      <p>
+        Ez az alkalmazás a felhasználói szerepkörök kezelését demonstrálja React
+        Context segítségével.
+      </p>
+    </>
+  );
+};
 
 export default AboutPage;

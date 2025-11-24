@@ -1,4 +1,8 @@
+import { useAuth } from '../components/AuthContext.jsx';
+    
 const LogOutPage = () => {
+    const { logout } = useAuth();
+    logout();
     return (
         <div>
             <h1>Kijelentkezés</h1>

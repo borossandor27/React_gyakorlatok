@@ -1,4 +1,3 @@
-// Router.jsx
 import { Routes, Route } from 'react-router-dom';
 import RoleBasedRoute from './RoleBasedRoute';
 import AdminDashboard from '../pages/AdminDashboard';
