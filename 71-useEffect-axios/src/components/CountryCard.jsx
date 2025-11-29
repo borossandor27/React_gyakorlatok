@@ -10,6 +10,8 @@ const CountryCard = ({ countryData }) => {
   );
   return (
     <>
+      <img src={countryData ? countryData.flags.svg : ""} alt={countryData ? countryData.flags.alt : ""} className="flag flag-left" />
+      <img src={countryData ? countryData.flags.png : ""} alt={countryData ? countryData.flags.alt : ""} className="flag flag-right" />
       <h1>{countryData ? countryData.name.common : "Loading..."}</h1>
       {countryData && countryData.coatOfArms && countryData.coatOfArms.svg && (
         <div id="orszagcimer">
@@ -59,7 +61,7 @@ const CountryCard = ({ countryData }) => {
           </tr>
           <tr>
             <td>Vele határos országok</td>
-            <td>{countryData ? countryData.borders.join(", ") : "N/A"}</td>
+            <td>{countryData && countryData.borders && countryData.borders.length ? countryData.borders.join(", ") : "N/A"}</td>
           </tr>
         </tbody>
       </table>
@@ -69,8 +71,6 @@ const CountryCard = ({ countryData }) => {
           <iframe
             title={`${countryData.name.common} elhelyezkedése`}
             src={`https://maps.google.com/maps?q=${countryData.latlng[0]},${countryData.latlng[1]}&t=&z=6&ie=UTF8&iwloc=&output=embed`}
-            width="600"
-            height="450"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"

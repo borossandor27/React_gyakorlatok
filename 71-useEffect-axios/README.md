@@ -49,3 +49,7 @@ In this table you can find the fields of the different API versions, extra infor
 | topLevelDomain / tld   | v  | v  |  v   | Internet top level domains                                                                      | 
 | translations           | v  | v  |  v   | List of country name translations                                                               |
 | unMember               |    | v  |  v   | UN Member status                                                                                |
+
+## Ország kódok
+
+Innen [https://restcountries.com/v3.1/all?fields=name,cca2](https://restcountries.com/v3.1/all?fields=name,cca2)
