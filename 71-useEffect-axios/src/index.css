@@ -38,7 +38,7 @@
 }
 
 #terkep {
-    width: 80%;
+    width: minmax(500px, 90%);
     height: auto;
     margin-top: 50px;
     border: 1px solid #ccc;

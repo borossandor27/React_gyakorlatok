@@ -65,7 +65,7 @@ const CountryCard = ({ countryData }) => {
       </table>
       {/* TÉRKÉP MEGJELENÍTÉSE */}
       {countryData && countryData.latlng && (
-        <div className="terkep">
+        <div id="terkep">
           <iframe
             title={`${countryData.name.common} elhelyezkedése`}
             src={`https://maps.google.com/maps?q=${countryData.latlng[0]},${countryData.latlng[1]}&t=&z=6&ie=UTF8&iwloc=&output=embed`}
