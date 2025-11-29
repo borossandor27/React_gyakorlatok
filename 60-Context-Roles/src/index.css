@@ -17,6 +17,8 @@ nav a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  transition: color 0.25s;
+  padding: .25em .5em;
 }
 nav a:hover {
   color: #ff0000;
@@ -27,10 +29,17 @@ body {
   display: flex;
   place-items: start center;
   justify-content: center;
-  min-width: 320px;
+  width: min(320px, 100%);
   min-height: 100vh;
 }
-
+#root {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: center;
+  text-align: center;
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

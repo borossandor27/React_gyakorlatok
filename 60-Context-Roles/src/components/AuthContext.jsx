@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, sessionStorage, useEffect } from "react";
 
 const AuthContext = createContext(null);
 
@@ -7,7 +7,18 @@ export const AuthProvider = ({ children }) => {
     isLoggedIn: false,
     role: "guest",
   });
-
+// Alkalmazás indításakor betöltjük a mentett adatokat
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (error) {
+        console.error('Hibás user adat a localStorage-ban:', error);
+        localStorage.removeItem('user');
+      }
+    }
+  }, []);
   // JSON tömb a felhasználói adatokkal
   const users = [
     { 
@@ -48,6 +59,8 @@ export const AuthProvider = ({ children }) => {
         userId: userData.userId,
         userEmail: userData.userEmail
       });
+      // Tárolás sessionStorage-ban
+      sessionStorage.setItem('userRole', userData.role);
       return { success: true, message: `Sikeres bejelentkezés! Üdvözöljük, ${userData.username}!` };
     } else {
       // Sikertelen bejelentkezés
