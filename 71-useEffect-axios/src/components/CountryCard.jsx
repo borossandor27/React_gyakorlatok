@@ -44,8 +44,7 @@ const CountryCard = ({ countryData }) => {
             <td>
               {countryData
                 ? countryData.area
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " km²"
+                    .toLocaleString('hu-HU') + " km²"
                 : "N/A"}
             </td>
           </tr>
@@ -54,8 +53,7 @@ const CountryCard = ({ countryData }) => {
             <td>
               {countryData
                 ? countryData.population
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " fő"
+                    .toLocaleString('hu-HU') + " fő"
                 : "N/A"}
             </td>
           </tr>
