@@ -1,65 +1,66 @@
 #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    width: 600px;
-    position: relative; /* a zászlók pozícionálásához */
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  width: 600px;
+  position: relative;
+  /* a zászlók pozícionálásához */
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #root table {
-    border-collapse: collapse;
-    width: 400px;
-    margin: 20px auto;
+  border-collapse: collapse;
+  width: 400px;
+  margin: 20px auto;
 }
 
 #orszagcimer {
-    width: 120px;
-    height: auto;
-    border: none;
-    margin-bottom: 20px;
+  width: 120px;
+  height: auto;
+  border: none;
+  margin-bottom: 20px;
 }
 
 #orszagcimer img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 #root th,
 #root td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 #root th {
-    background-color: #f2f2f2;
-    text-align: center;
+  background-color: #f2f2f2;
+  text-align: center;
 }
 
 #terkep {
-    width: minmax(500px, 90%);
-    height: auto;
-    margin-top: 50px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: minmax(500px, 90%);
+  height: auto;
+  margin-top: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #terkep iframe {
-    display: block;
-    width: 100%;
-    height: auto;
-    border: none;
-    border-radius: 10px;
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 10px;
 }
 
 .flag {
@@ -68,8 +69,8 @@
   width: 50px;
   height: auto;
   border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .flag-left {
@@ -96,6 +97,7 @@
   font-size: 16px;
   padding: 4px;
 }
+
 .country-selector label {
   margin-right: 8px;
   font-weight: bold;
