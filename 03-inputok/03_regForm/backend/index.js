@@ -24,13 +24,13 @@ app.post('/api/user', (req, res) => {
   const registrationData = req.body;
   
   console.log('--- Új regisztráció érkezett: ---');
-  console.log(`Vezetéknév: ${registrationData.lastName || 'nincs'}`);
-  console.log(`Keresztnév: ${registrationData.firstName || 'nincs'}`);
-  console.log(`Jelszó (nem tároljuk tisztán!): ${registrationData.password ? '******' : 'nincs'}`);
-  console.log(`Születési idő: ${registrationData.dob || 'nincs'}`);
-  console.log(`Irányítószám (Uncontrolled mező): ${registrationData.zipCode || 'nincs'}`);
+  console.log(`Vezetéknév: ${registrationData.lastName || 'nincs megadva'}`);
+  console.log(`Keresztnév: ${registrationData.firstName || 'nincs megadva'}`);
+  console.log(`Jelszó (nem tároljuk tisztán!): ${registrationData.password ? '******' : 'nincs megadva'}`);
+  console.log(`Születési idő: ${registrationData.dob || 'nincs megadva'}`);
+  console.log(`Irányítószám (Uncontrolled mező): ${registrationData.zipCode || 'nincs megadva'}`);
   console.log(`Hírlevél: ${registrationData.newsletter ? 'Igen' : 'Nem'}`);
-  console.log(`Érdeklődés: ${registrationData.interest || 'nincs'}`);
+  console.log(`Érdeklődés: ${registrationData.interest || 'nincs megadva'}`);
   console.log('------------------------------------');
 
   // 3. Válasz küldése a kliensnek
