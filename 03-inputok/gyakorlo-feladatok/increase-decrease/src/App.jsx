@@ -20,9 +20,6 @@ function App() {
                     />
                 ))}
             </div>
-            <footer className="app-footer">
-                Készült React és CSS használatával.
-            </footer>
     </div>
   )
 }
