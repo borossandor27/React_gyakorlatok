@@ -27,5 +27,4 @@ Másik lehetőség adatok tárolására a kliens számítógépén. Kis méretű
 | **Biztonság**           | Kliens oldalon marad, kevésbé veszélyes a túlhasználat | Ha nincs `HttpOnly` és `Secure`, sebezhető lehet (XSS, adatlopás) |
 | **Tipikus használat**   | Frontend adatok, beállítások                           | Hitelesítés, session kezelés, tracking                            |
 
-
 Ebben a példában, ha beírod a neved, majd újratöltöd az oldalt, akkor már azon a néven fog köszönteni, a neved megmarad ebben a böngészőben.
