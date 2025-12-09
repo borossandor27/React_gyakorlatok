@@ -1,0 +1,20 @@
+input[type="text"],
+input[type="number"] {
+    width: 90%;
+    padding: 4px;
+    box-sizing: border-box;
+    text-align: right;
+}
+.szuletesiDatum {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+}
+.szuletesiDatum input {
+    width: 4em;
+    margin: 0 5px;
+}
+.hirlevel {
+    text-align: center;
+}

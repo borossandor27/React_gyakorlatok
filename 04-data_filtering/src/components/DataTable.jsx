@@ -2,26 +2,60 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import LoadingData from "./LoadingData";
 import FilterForm from "./FilterForm";
+import "./DataTable.css";
 
 const DataTable = () => {
   const { adatok } = useContext(UserContext);
 
-  const [filters, setFilters] = useState({});
-  const [szurtAdatok, setSzurtAdatok] = useState([]);
+  const [filters, setFilters] = useState({
+    TeljesNev: "",
+    ev: "",
+    honap: "",
+    nap: "",
+    Magassag: "",
+    Gyerekek: "",
+    Hirlevel: false,
+  });
+
+  const [szurtAdatok, setSzurtAdatok] = useState(adatok);
 
   useEffect(() => {
     setSzurtAdatok(adatok);
-  }, [filters]);
+  }, [adatok]);
 
+  // ✅ KOMPLEX SZŰRÉS EGY HELYEN
   const szuresInditasa = () => {
+    console.log("Szűrés indítva a következő feltételekkel:", filters);
     let eredmeny = adatok.filter((sor) => {
-      return (
-        (!filters.TeljesNev ||
-          sor.TeljesNev
-            .toLowerCase()
-            .includes(filters.TeljesNev.toLowerCase())) &&
-        (!filters.Gyerekek || sor.Gyerekek == filters.Gyerekek)
-      );
+      // ✅ NÉV
+      const nevOK =
+        !filters.TeljesNev ||
+        sor.TeljesNev.toLowerCase().includes(filters.TeljesNev.toLowerCase());
+
+      // ✅ MAGASSÁG (MIN)
+      const magassagOK =
+        !filters.Magassag || sor.Magassag >= Number(filters.Magassag);
+
+      // ✅ GYEREKEK (PONTOS)
+      const gyerekOK =
+        !filters.Gyerekek || sor.Gyerekek === Number(filters.Gyerekek);
+
+      // ✅ HÍRLEVÉL
+      const hirlevelOK = !filters.Hirlevel || sor.HirleveletKer === true;
+
+      // ✅ SZÜLETÉSI DÁTUM (ÉV-HÓ-NAP)
+      let datumOK = true;
+      if (filters.ev || filters.honap || filters.nap) {
+        const d = new Date(sor.Szuletett);
+
+        if (filters.ev && d.getFullYear() !== Number(filters.ev))
+          datumOK = false;
+        if (filters.honap && d.getMonth() + 1 !== Number(filters.honap))
+          datumOK = false;
+        if (filters.nap && d.getDate() !== Number(filters.nap)) datumOK = false;
+      }
+
+      return nevOK && magassagOK && gyerekOK && hirlevelOK && datumOK;
     });
 
     setSzurtAdatok(eredmeny);
@@ -29,8 +63,7 @@ const DataTable = () => {
 
   return (
     <div>
-      <LoadingData szurtAdatok={szurtAdatok} />
-
+      <LoadingData />
       <table>
         <thead>
           <tr>
@@ -39,7 +72,7 @@ const DataTable = () => {
                 🔍
               </button>
             </th>
-            <th>Teljes Név</th>
+            <th>Teljes név</th>
             <th>Született</th>
             <th>Magasság</th>
             <th>Gyerekek</th>
@@ -66,6 +99,8 @@ const DataTable = () => {
           ))}
         </tbody>
       </table>
+
+      <p>Találatok száma: {szurtAdatok.length}</p>
     </div>
   );
 };
