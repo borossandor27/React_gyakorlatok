@@ -3,6 +3,7 @@
 A `useReducer` egy React hook, amely **összetett állapotkezelést** tesz lehetővé. Olyan esetekben használjuk, amikor:
 
 - Komplex állapot logika van (több alállapot, egymástól függő értékek)
+- Form kezelés (sok mező, validáció, egymástól függő mezők)
 - Több művelet befolyásolja ugyanazt az állapotot
 - Kiszámítható állapotátmenetekre van szükség
 - Az állapot nagy és összetett objektum
