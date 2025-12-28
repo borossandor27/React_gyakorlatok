@@ -1,0 +1,10 @@
+.private-data-button {
+  grid-area: private-data-button;
+  background-color: aqua;
+}
+
+.shared-data-button {
+  grid-area: shared-data-button;
+  grid-column: span 2;
+  background-color: lightgreen;
+}

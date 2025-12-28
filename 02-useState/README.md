@@ -17,3 +17,10 @@ function FavoriteColor() {
 A fenti kód egy `color` változót hoz létre "red" értékkel és egy `setColor` függvényt, amelynek a segítéségével változtatni tudjuk.
 
 > Ezek a nevek olyan változók, amelyeket bármilyen néven elnevezhetünk!
+
+## Adatátadás a komponensek között
+
+A gyerek komponensek nem férhetnek hozzá a szülő adataihoz. Ha mégis szeretnénk megosztani, akkor ...
+
+## Több komponens ugyanazt az adatot
+
