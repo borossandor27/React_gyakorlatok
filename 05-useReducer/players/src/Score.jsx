@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { createRoot } from 'react-dom/client';
 
 const initialScore = [
   {
