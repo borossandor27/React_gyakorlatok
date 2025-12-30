@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import "./Hearts.css";
 
 function Hearts({ likecount, handleClick }) {
   const hearts = [];
@@ -21,7 +22,7 @@ function Hearts({ likecount, handleClick }) {
   }
 
   return (
-    <div className="hearts" style={{ fontSize: "24px", color: "red" }}>
+    <div className="hearts">
       {hearts}
     </div>
   );

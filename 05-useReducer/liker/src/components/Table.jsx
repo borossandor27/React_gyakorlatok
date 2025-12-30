@@ -2,13 +2,15 @@ import Hearts from "./Hearts";
 import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
 import { initialState, reducer } from "../reducers/Reducer";
+import "./Table.css";
 
 const Table = () => {
   // A useState helyett useReducer-t használunk
-  const [users, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const backendUsers = "https://retoolapi.dev/jr8663/liker";
 
   useEffect(() => {
+    dispatch({ type: 'SET_LOADING', payload: true });
     axios
       .get(backendUsers)
       .then((response) => {
@@ -19,54 +21,58 @@ const Table = () => {
   }, []);
 
   // Ez a függvény küldi el az "üzenetet" a reducernek
-  // Table.jsx - A handleLikeClick függvény módosítása
-  const handleLikeClick = (index, userId) => {
-    const newLikeValue = index + 1;
+const handleLikeClick = (index, userId) => {
+    if (state.isLoading) return; // Megakadályozzuk a dupla kattintást
 
-    // 1. Küldés a backendre (aszinkron módon)
-    axios
-      .patch(`${backendUsers}/${userId}`, { like: newLikeValue })
+    dispatch({ type: 'SET_LOADING', payload: true });
+    
+    axios.patch(`${backendUsers}/${userId}`, { like: index + 1 })
       .then(() => {
-        // 2. Ha a szerver sikeresen válaszolt, frissítjük a lokális state-et
-        dispatch({
-          type: "UPDATE_LIKE",
-          index: index, // Itt az indexet küldjük, a reducer hozzáad +1-et
-          userId: userId,
-        });
-        console.log(`Sikeres mentés: User ${userId}, Like: ${newLikeValue}`);
+        dispatch({ type: 'UPDATE_LIKE', index, userId });
       })
-      .catch((error) => {
-        console.error("Hiba a mentés során:", error);
-        alert("Nem sikerült menteni a kedvelést!");
+      .catch(() => {
+        dispatch({ type: 'SET_LOADING', payload: false });
+        alert("Hiba történt!");
       });
   };
 
   return (
-    <form action="">
+    <div style={{ position: 'relative' }}>
+      {/* Töltő ikon megjelenítése */}
+      {state.isLoading && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(255,255,255,0.5)', display: 'flex', 
+          justifyContent: 'center', alignItems: 'center', zIndex: 10
+        }}>
+          <div className="spinner">Betöltés...</div>
+        </div>
+      )}
+
       <table>
         <thead>
           <tr>
-            <th>Felhasználó neve</th>
-            <th>Kedvelés mértéke</th>
+            <th>id</th>
+            <th>Felhasználó</th>
+            <th>Kedvelések</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {state.data.map((user) => (
             <tr key={user.id}>
+              <td>{user.id}</td>
               <td>{user.fullname}</td>
               <td>
-                <Hearts
-                  likecount={user.like}
-                  // Itt adjuk át a logikát a Hearts-nak
-                  handleClick={(idx) => handleLikeClick(idx, user.id)}
+                <Hearts 
+                  likecount={user.like} 
+                  handleClick={(idx) => handleLikeClick(idx, user.id)} 
                 />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </form>
+    </div>
   );
 };
-
 export default Table;

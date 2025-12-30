@@ -1,0 +1,6 @@
+.hearts {
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+    color: red;
+}

@@ -1,0 +1,8 @@
+table{
+    margin: 20px auto;
+
+}
+tbody tr:nth-child(odd) {
+    background-color: #f2d1d1;
+    color: darkred;
+}

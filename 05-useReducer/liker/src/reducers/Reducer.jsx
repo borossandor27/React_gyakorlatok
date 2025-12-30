@@ -1,17 +1,23 @@
 import { useReducer } from 'react';
-
-const initialState = [];
+const initialState = {
+  data: [],
+  isLoading: false
+};
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'SET_LOADING':
+      return { ...state, isLoading: action.payload };
     case 'SET_USERS':
-      // A backendből érkező adatok betöltése
-      return action.payload;
+      return { ...state, data: action.payload, isLoading: false };
     case 'UPDATE_LIKE':
-      // A konkrét felhasználó like értékének módosítása
-      return state.map((user) =>
-        user.id === action.userId ? { ...user, like: action.index + 1 } : user
-      );
+      return {
+        ...state,
+        isLoading: false,
+        data: state.data.map((user) =>
+          user.id === action.userId ? { ...user, like: action.index + 1 } : user
+        ),
+      };
     default:
       return state;
   }
