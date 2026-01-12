@@ -1,0 +1,2 @@
+# Egyszerű oldal
+

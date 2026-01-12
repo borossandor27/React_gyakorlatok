@@ -1,0 +1,308 @@
+[
+  {
+    "id": 1,
+    "fullname": "Liam Johnson",
+    "country": "USA",
+    "portrait_image_url": "https://picsum.photos/id/10/300/300",
+    "hobby": [
+      "hiking",
+      "photography",
+      "coding"
+    ],
+    "likecount": 124,
+    "dislikecount": 7
+  },
+  {
+    "id": 2,
+    "fullname": "Emma Williams",
+    "country": "United Kingdom",
+    "portrait_image_url": "https://picsum.photos/id/11/300/300",
+    "hobby": [
+      "reading",
+      "yoga"
+    ],
+    "likecount": 201,
+    "dislikecount": 9
+  },
+  {
+    "id": 3,
+    "fullname": "Noah Martin",
+    "country": "Canada",
+    "portrait_image_url": "https://picsum.photos/id/12/300/300",
+    "hobby": [
+      "skiing",
+      "cooking",
+      "board games"
+    ],
+    "likecount": 88,
+    "dislikecount": 4
+  },
+  {
+    "id": 4,
+    "fullname": "Olivia García",
+    "country": "Spain",
+    "portrait_image_url": "https://picsum.photos/id/13/300/300",
+    "hobby": [
+      "painting",
+      "running"
+    ],
+    "likecount": 159,
+    "dislikecount": 12
+  },
+  {
+    "id": 5,
+    "fullname": "Amir Rahman",
+    "country": "Pakistan",
+    "portrait_image_url": "https://picsum.photos/id/14/300/300",
+    "hobby": [
+      "cricket",
+      "gardening"
+    ],
+    "likecount": 132,
+    "dislikecount": 15
+  },
+  {
+    "id": 6,
+    "fullname": "Sofia Rossi",
+    "country": "Italy",
+    "portrait_image_url": "https://picsum.photos/id/15/300/300",
+    "hobby": [
+      "baking",
+      "travel",
+      "cinema"
+    ],
+    "likecount": 174,
+    "dislikecount": 6
+  },
+  {
+    "id": 7,
+    "fullname": "Máté Kovács",
+    "country": "Hungary",
+    "portrait_image_url": "https://picsum.photos/id/16/300/300",
+    "hobby": [
+      "futás",
+      "társasjáték",
+      "programozás"
+    ],
+    "likecount": 67,
+    "dislikecount": 3
+  },
+  {
+    "id": 8,
+    "fullname": "Aya Tanaka",
+    "country": "Japan",
+    "portrait_image_url": "https://picsum.photos/id/17/300/300",
+    "hobby": [
+      "ceramics",
+      "calligraphy"
+    ],
+    "likecount": 220,
+    "dislikecount": 11
+  },
+  {
+    "id": 9,
+    "fullname": "Lucas Dupont",
+    "country": "France",
+    "portrait_image_url": "https://picsum.photos/id/18/300/300",
+    "hobby": [
+      "cycling",
+      "wine tasting"
+    ],
+    "likecount": 141,
+    "dislikecount": 8
+  },
+  {
+    "id": 10,
+    "fullname": "Aisha Mohamed",
+    "country": "Egypt",
+    "portrait_image_url": "https://picsum.photos/id/19/300/300",
+    "hobby": [
+      "history",
+      "blogging",
+      "knitting"
+    ],
+    "likecount": 95,
+    "dislikecount": 2
+  },
+  {
+    "id": 11,
+    "fullname": "Jonas Müller",
+    "country": "Germany",
+    "portrait_image_url": "https://picsum.photos/id/20/300/300",
+    "hobby": [
+      "football",
+      "woodworking"
+    ],
+    "likecount": 176,
+    "dislikecount": 5
+  },
+  {
+    "id": 12,
+    "fullname": "Isabella Silva",
+    "country": "Brazil",
+    "portrait_image_url": "https://picsum.photos/id/21/300/300",
+    "hobby": [
+      "samba",
+      "surfing"
+    ],
+    "likecount": 210,
+    "dislikecount": 14
+  },
+  {
+    "id": 13,
+    "fullname": "Ethan Brown",
+    "country": "Australia",
+    "portrait_image_url": "https://picsum.photos/id/22/300/300",
+    "hobby": [
+      "rugby",
+      "camping"
+    ],
+    "likecount": 119,
+    "dislikecount": 10
+  },
+  {
+    "id": 14,
+    "fullname": "Zeynep Yılmaz",
+    "country": "Türkiye",
+    "portrait_image_url": "https://picsum.photos/id/23/300/300",
+    "hobby": [
+      "cooking",
+      "pilates"
+    ],
+    "likecount": 133,
+    "dislikecount": 9
+  },
+  {
+    "id": 15,
+    "fullname": "Chen Wei",
+    "country": "China",
+    "portrait_image_url": "https://picsum.photos/id/24/300/300",
+    "hobby": [
+      "tea ceremony",
+      "piano"
+    ],
+    "likecount": 185,
+    "dislikecount": 13
+  },
+  {
+    "id": 16,
+    "fullname": "Priya Nair",
+    "country": "India",
+    "portrait_image_url": "https://picsum.photos/id/25/300/300",
+    "hobby": [
+      "classical dance",
+      "poetry"
+    ],
+    "likecount": 142,
+    "dislikecount": 7
+  },
+  {
+    "id": 17,
+    "fullname": "André Costa",
+    "country": "Portugal",
+    "portrait_image_url": "https://picsum.photos/id/26/300/300",
+    "hobby": [
+      "sailing",
+      "fishing"
+    ],
+    "likecount": 76,
+    "dislikecount": 1
+  },
+  {
+    "id": 18,
+    "fullname": "Mia Novak",
+    "country": "Croatia",
+    "portrait_image_url": "https://picsum.photos/id/27/300/300",
+    "hobby": [
+      "diving",
+      "embroidery"
+    ],
+    "likecount": 64,
+    "dislikecount": 6
+  },
+  {
+    "id": 19,
+    "fullname": "Johannes van Dijk",
+    "country": "Netherlands",
+    "portrait_image_url": "https://picsum.photos/id/28/300/300",
+    "hobby": [
+      "speed skating",
+      "cheese making"
+    ],
+    "likecount": 158,
+    "dislikecount": 12
+  },
+  {
+    "id": 20,
+    "fullname": "Sara Svensson",
+    "country": "Sweden",
+    "portrait_image_url": "https://picsum.photos/id/29/300/300",
+    "hobby": [
+      "sauna",
+      "orienteering",
+      "baking"
+    ],
+    "likecount": 171,
+    "dislikecount": 5
+  },
+  {
+    "id": 21,
+    "fullname": "George Papadopoulos",
+    "country": "Greece",
+    "portrait_image_url": "https://picsum.photos/id/30/300/300",
+    "hobby": [
+      "philosophy",
+      "sailing"
+    ],
+    "likecount": 102,
+    "dislikecount": 3
+  },
+  {
+    "id": 22,
+    "fullname": "Nora Jensen",
+    "country": "Denmark",
+    "portrait_image_url": "https://picsum.photos/id/31/300/300",
+    "hobby": [
+      "cycling",
+      "design"
+    ],
+    "likecount": 149,
+    "dislikecount": 4
+  },
+  {
+    "id": 23,
+    "fullname": "Yara Haddad",
+    "country": "Lebanon",
+    "portrait_image_url": "https://picsum.photos/id/32/300/300",
+    "hobby": [
+      "photography",
+      "culinary arts"
+    ],
+    "likecount": 97,
+    "dislikecount": 2
+  },
+  {
+    "id": 24,
+    "fullname": "Samuel Okoro",
+    "country": "Nigeria",
+    "portrait_image_url": "https://picsum.photos/id/33/300/300",
+    "hobby": [
+      "basketball",
+      "podcasting"
+    ],
+    "likecount": 115,
+    "dislikecount": 7
+  },
+  {
+    "id": 25,
+    "fullname": "Elena Petrova",
+    "country": "Bulgaria",
+    "portrait_image_url": "https://picsum.photos/id/34/300/300",
+    "hobby": [
+      "violin",
+      "mountaineering"
+    ],
+    "likecount": 123,
+    "dislikecount": 6
+  }
+]
