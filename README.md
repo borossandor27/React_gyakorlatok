@@ -468,7 +468,7 @@ Használható a DOM manipuláció előtt, de általában csak speciális esetekb
   | `useRef` | DOM elemek kezelése vagy állandó tárolás | Fókuszkezelés, régi érték tárolása |
   | `useLayoutEffect` | DOM manipuláció közvetlen renderelés előtt | Méretre igazítás, vizuális manipuláció |
 
-### [Context](https://react.dev/learn/passing-data-deeply-with-context)
+### [Context API](https://react.dev/learn/passing-data-deeply-with-context)
 
 A komponensek között a propok átadása bonyolulttá és kényelmetlenné válhat, ha egy propot mélyen kell továbbadni a komponensfában, vagy ha sok komponensnek van szüksége ugyanarra az adatra.
 Ez a jelenség `prop drilling` néven ismert.
@@ -487,7 +487,7 @@ Az állapotot általában `useState` vagy `useReducer` kezeli, a context pedig e
   export const MyContext = createContext();
   ```
 
-- A `createContext()` létrehoz egy kontextus objektumot
+- A `createContext()` létrehoz egy kontextus objektumot, amely két fő komponenst tartalmaz: a `Provider`-t és a `Consumer`-t.
 - Opcionálisan megadható **alapértelmezett érték**
 - Az alapértelmezett érték csak akkor használódik, ha nincs Provider
 
@@ -497,7 +497,7 @@ Példa alapértelmezett értékkel:
   export const ThemeContext = createContext('light');
   ```
 
-#### Provider – az adatok biztosítása
+#### Provider – az adatok betöltése
 
 A context csak akkor használható, ha a komponenseket **Providerbe** csomagoljuk.
 
@@ -535,11 +535,11 @@ function App() {
 - A `useContext` feliratkozik a context értékére
 - Ha a value változik, a komponens újrarenderelődik
 
-#### Context + state együtt használva
+Context és state együtt használva
 
-Ez a leggyakoribb és ajánlott használat.
+#### Ez a leggyakoribb és ajánlott használat.
 
-jsx
+````jsx
 import { createContext, useState } from 'react';
 
 export const CounterContext = createContext();
@@ -553,9 +553,11 @@ export function CounterProvider({ children }) {
     </CounterContext.Provider>
   );
 }
+````
 
 Használat:
 
+````jsx
 import { useContext } from 'react';
 import { CounterContext } from './CounterContext';
 
@@ -564,16 +566,18 @@ function Counter() {
 
   return (
     <>
-      <p>{count}</p>
+      <p> {count} </p>
       <button onClick={() => setCount(count + 1)}>+</button>
     </>
   );
 }
+````
 
-Saját hook készítése (best practice)
+#### Saját hook készítése *(best practice)*
 
 Ez tisztább, olvashatóbb kódot eredményez.
 
+````jsx
 import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
@@ -591,15 +595,17 @@ export function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
+````
 
 Használat:
 
+````jsx
 const { user, setUser } = useAuth();
+````
 
 ### React Router
 
-Ismerd meg az útvonalkezelést, hogy hogyan lehet különböző oldalakra navigálni egy egyoldalas alkalmazásban (SPA).
-
+I
 ## Állapotkezelés
 
 ### Redux vagy MobX
