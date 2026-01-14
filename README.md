@@ -1,16 +1,21 @@
 # React jegyzet
+
 Segédlet a React frontend keretrendszer megismeréséhez. Lépésről lépésre
 
 ## HTML, CSS és JavaScript Alapok
 
 ### HTML
+
 Ismerni kell a HTML alapjait, mivel a React komponensek végül HTML kódot renderelnek.
 
 ### CSS
+
 A stílusok kezeléséhez szükséges alapok. A React-ben gyakran használnak CSS-t vagy CSS-in-JS megoldásokat.
 
 ### JavaScript
+
 A React JavaScript alapú, így nélkülözhetetlenek a JavaScript ismeretek. pl.:
+
 - változók deklarálása
 - arrow function-ek (``` let myFunction = (a, b) => a * b; ```)
 - destrukturálás (*tömbökből vagy objektumokból értékek kiemelése*)
@@ -19,6 +24,7 @@ A React JavaScript alapú, így nélkülözhetetlenek a JavaScript ismeretek. pl
 - Array és Object metódusok (*pl. map, filter, reduce, ...*)
 
 ## React Alapok
+
 A React megértésében kulcsfontosságú a ReactDOM megértése. 
 A böngésző **DOM** (*Document Object Model*) és a **ReactDOM** is 
 ugyanazokat a feladatokat (*a weboldal felhasználói felületét (UI) kezelje és frissítse.*), de teljesen más technikákat használva.
@@ -26,13 +32,16 @@ A felhasználói interakciókat előbb a ReactDOM kezeli és átvezeti
 a böngésző DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
 
 ### Létrehozás
+
 ```Shell
 npm create vite@latest my-react-app 
 cd my-react-app
 npm install
 npm run dev
 ```
+
 vagy
+
 ```Shell
 npx create-vite@latest my-react-app
 cd my-react-app
@@ -41,38 +50,44 @@ npm run dev
 ```
 
 Már többször előfordult, hogy a policy letiltotta a futást a `File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.` hibaüzenettel. Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a 
+
 ```PowerShell
   Set-ExecutionPolicy RemoteSigned
 ```
+
 paranccsal engedélyt adhatunk a node.js számára a futáshoz.
 
 Sikeres futatás után az alábbi könyvtárszerkezetet kapjuk:
-```
-hello-vite-app/
-├── node_modules/
-├── public/
-│   ├── favicon.ico
-│   └── vite.svg
-├── src/
-│   ├── assets/
-│   │   └── react.svg
-│   ├── App.css
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-├── .gitignore
-├── index.html
-├── package.json
-├── README.md
-└── vite.config.js
-```
+
+  ```Shell
+  hello-vite-app/
+  ├── node_modules/
+  ├── public/
+  │   ├── favicon.ico
+  │   └── vite.svg
+  ├── src/
+  │   ├── assets/
+  │   │   └── react.svg
+  │   ├── App.css
+  │   ├── App.jsx
+  │   ├── index.css
+  │   └── main.jsx
+  ├── .gitignore
+  ├── index.html
+  ├── package.json
+  ├── README.md
+  └── vite.config.js
+  ```
 
 Az alapértelmezett project szerkesztését az `src` mappában lévő fájlokkal, leginkább az `App.jsx` fájl-al kezdjük.
 
 ### React komponensek
+
 Funkcionális és osztály alapú komponenseket is készíthetünk.
+Hanygoljuk az osztály alapúakat!
 
 #### Funkcionális komponensek
+
 ```jsx
 import React from 'react';
 
@@ -91,6 +106,7 @@ export default Greeting;
 ```
 
 Használata:
+
 ```jsx
 import React from 'react';
 import Greeting from './Greeting';
@@ -107,346 +123,478 @@ export default App;
 ```
 
 #### Osztály alapú komponensek
+
 Az osztály alapú komponenseket akkor használták, amikor a komponenseknek belső állapotra (state) vagy lifecycle metódusokra volt szükségük. Azonban a React 16.8 verziótól kezdve, a hooks bevezetésével a funkcionális komponensek is képesek kezelni az állapotot és az életciklusokat, így az osztály alapú komponensek használata ritkábbá vált.
 
-```jsx
-import React, { Component } from 'react';
+  ```jsx
+  import React, { Component } from 'react';
 
-// Egy osztály alapú komponens, amely köszönti a felhasználót
-class Greeting extends Component {
-  render() {
-    const { name } = this.props; // Props de-strukturálása
-    return (
-      <div>
-        <h1>Szia, {name}!</h1>
-        <p>Üdvözlünk a React világában!</p>
-      </div>
-    );
+  // Egy osztály alapú komponens, amely köszönti a felhasználót
+  class Greeting extends Component {
+    render() {
+      const { name } = this.props; // Props de-strukturálása
+      return (
+        <div>
+          <h1>Szia, {name}!</h1>
+          <p>Üdvözlünk a React világában!</p>
+        </div>
+      );
+    }
   }
-}
 
-// Ezt a komponenst használhatod máshol is:
-export default Greeting;
-```
+  // Ezt a komponenst használhatod máshol is:
+  export default Greeting;
+  ```
 
 Használat:
-```jsx
-import React from 'react';
-import Greeting from './Greeting';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Greeting name="Anna" />
-      </div>
-    );
+  ```jsx
+  import React from 'react';
+  import Greeting from './Greeting';
+
+  class App extends React.Component {
+    render() {
+      return (
+        <div>
+          <Greeting name="Anna" />
+        </div>
+      );
+    }
   }
-}
 
-export default App;
-```
+  export default App;
+  ```
 
 ### JSX (JavaScript XML)
-A React egyedi szintaxisa, ami lehetővé teszi a JavaScript és HTML kombinációját. Kibővíti a JavaScript lehetőségeit, segítségével deklaratív módon írjuk le a felhasználói felületeket. Használata olvashatóbbá és struktúráltabbá teszi a kódot.
-```jsx
-import React from 'react';
 
-const App = () => {
-  const user = {
-    name: 'Anna',
-    age: 28,
-    hobbies: ['reading', 'coding', 'hiking'],
+A React egyedi szintaxisa, ami lehetővé teszi a JavaScript és HTML kombinációját. Kibővíti a JavaScript lehetőségeit, segítségével deklaratív módon írjuk le a felhasználói felületeket. Használata olvashatóbbá és struktúráltabbá teszi a kódot.
+
+  ```jsx
+  import React from 'react';
+
+  const App = () => {
+    const user = {
+      name: 'Anna',
+      age: 28,
+      hobbies: ['reading', 'coding', 'hiking'],
+    };
+
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <h1>Welcome to React with Vite!</h1>
+        <p>
+          <strong>Name:</strong> {user.name}
+        </p>
+        <p>
+          <strong>Age:</strong> {user.age}
+        </p>
+        <h3>Hobbies:</h3>
+        <ul>
+          {user.hobbies.map((hobby, index) => (
+            <li key={index}>{hobby}</li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
-  return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Welcome to React with Vite!</h1>
-      <p>
-        <strong>Name:</strong> {user.name}
-      </p>
-      <p>
-        <strong>Age:</strong> {user.age}
-      </p>
-      <h3>Hobbies:</h3>
-      <ul>
-        {user.hobbies.map((hobby, index) => (
-          <li key={index}>{hobby}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default App;
-```
+  export default App;
+  ```
 
 ### Props
+
 A props (_az angol "properties" szóból származik_) a React komponensek közötti adatátvitel mechanizmusa. Ez egy objektum, amelyet a szülő komponens továbbít a gyermek komponensnek. A props segítségével dinamikus adatokat adhatunk át a gyermek komponenseknek, hogy azok testreszabottan jelenítsenek meg tartalmat vagy működjenek.
 
-```jsx
-function Car(props) {
-  return <h2>I am a {props.brand}!</h2>;
-}
+  ```jsx
+  function Car(props) {
+    return <h2>I am a {props.brand}!</h2>;
+  }
 
-function Garage() {
-  return (
-    <>
-      <h1>Who lives in my garage?</h1>
-      <Car brand="Ford" />
-    </>
-  );
-}
-```
+  function Garage() {
+    return (
+      <>
+        <h1>Who lives in my garage?</h1>
+        <Car brand="Ford" />
+      </>
+    );
+  }
+  ```
 
 ### Állapotok kezelése egy komponensen belül (`state`).
+
 React-ben az állapotkezelés a `useState` hook segítségével történik, amely lehetővé teszi, hogy a funkcionális komponensek saját állapotokat definiáljanak és azok változásait kezeljék. Amikor az állapot megváltozik, React automatikusan újrarendereli a komponenst, így az mindig az aktuális állapotot jeleníti meg.
 
 ### Összetett adatok állapot kezelése
+
 Több összefüggő adat esetén használjunk objektumokat és ezek állapotához rendeljünk feldolgozást
 
-```jsx
-const [user, setUser] = useState({
-    name: 'Anna',
-    age: 28,
-    hobbies: ['reading', 'coding'],
-});
+  ```jsx
+  const [user, setUser] = useState({
+      name: 'Anna',
+      age: 28,
+      hobbies: ['reading', 'coding'],
+  });
 
-// Életkor növelése
-const increaseAge = () => {
-    setUser({ ...user, age: user.age + 1 });
-};
-```
+  // Életkor növelése
+  const increaseAge = () => {
+      setUser({ ...user, age: user.age + 1 });
+  };
+  ```
 
-### Komponens Életciklus
+### Komponens életciklus
+
 A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-eseményeire reagáljunk, például:
 
 - Komponens betöltésekor (mounting). `[]` → egyszer fut (*adatlekérés tipikusan így megy*)
 - nincs [] → minden render után fut.
 - Állapot vagy props változásakor (updating). `[valtozo]` → fut, ha valtozo megváltozik.
-- Komponens eltávolításakor (unmounting). 
-
+- Komponens eltávolításakor (unmounting).
 
 (*pl. `componentDidMount`, `componentDidUpdate`*).
 
 ### [Hook-ok](https://react.dev/reference/react/hooks)
+
 React-ben a hookok olyan speciális függvények, amelyek segítségével a funkcionális komponensekben állapotot kezelhetünk, és hozzáférhetünk az életciklushoz kapcsolódó funkciókhoz.
 
 ### A `useState` hook
+
 Hsználni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mezők értékei, gomb állapota_), amelyek idővel változhatnak.
-```jsx
-import React, { useState } from 'react';
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
+  ```jsx
+  import React, { useState } from 'react';
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increase</button>
-    </div>
-  );
-};
-```
+  const Counter = () => {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increase</button>
+      </div>
+    );
+  };
+  ```
 
 ### A `useEffect` hook
 Elsődleges feladat az életciklus események kezelése (pl. komponens betöltésekor, frissítésekor, vagy eltávolításakor végrehajtandó műveletek).
 De használható API hívásokhoz, eseményfigyelők beállításához, időzítők indításához/tisztításához.
 
-```jsx
-import React, { useState, useEffect } from 'react';
+  ```jsx
+  import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
-  const [time, setTime] = useState(0);
+  const Timer = () => {
+    const [time, setTime] = useState(0);
 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+
+      return () => clearInterval(interval); // Cleanup
+    }, []);
+
+    return <p>Time: {time}</p>;
+  };
+  ```
+
+  ```jsx
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
-    }, 1000);
-
-    return () => clearInterval(interval); // Cleanup
+    console.log("lefut egyszer, amikor a komponens betöltődik");
   }, []);
+  ```
 
-  return <p>Time: {time}</p>;
-};
-```
+  ```jsx
+  useEffect(() => {
+    console.log("minden render után lefut");
+  });
+  ```
 
-```jsx
-useEffect(() => {
-   console.log("lefut egyszer, amikor a komponens betöltődik");
-}, []);
-```
-
-```jsx
-useEffect(() => {
-   console.log("minden render után lefut");
-});
-```
-
-```jsx
-useEffect(() => {
-   console.log("lefut, amikor változik a 'query'");
-}, [query]);
-```
-
+  ```jsx
+  useEffect(() => {
+    console.log("lefut, amikor változik a 'query'");
+  }, [query]);
+  ```
 
 ### `useContext` hook
 
 Feladata a globális állapot vagy adat megosztása komponensek között.
-Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használnia (_pl. felhasználói bejelentkezési állapot_).
+Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használnia (pl. felhasználói bejelentkezési állapot).
 
-```jsx
-import React, { createContext, useContext } from 'react';
+  ```jsx
+  import React, { createContext, useContext } from 'react';
 
-const ThemeContext = createContext('light');
+  const ThemeContext = createContext('light');
 
-const ThemedComponent = () => {
-  const theme = useContext(ThemeContext);
-  return <p>Current theme: {theme}</p>;
-};
+  const ThemedComponent = () => {
+    const theme = useContext(ThemeContext);
+    return <p>Current theme: {theme}</p>;
+  };
 
-const App = () => {
-  return (
-    <ThemeContext.Provider value="dark">
-      <ThemedComponent />
-    </ThemeContext.Provider>
-  );
-};
-```
+  const App = () => {
+    return (
+      <ThemeContext.Provider value="dark">
+        <ThemedComponent />
+      </ThemeContext.Provider>
+    );
+  };
+  ```
 
 ### `useReducer` hook
 
- Összetett állapotkezeléshez (pl. több kapcsolódó állapot kezelése egy helyen).
+Összetett állapotkezeléshez (pl. több kapcsolódó állapot kezelése egy helyen).
 Használni kell, ha a komponens állapota bonyolult logikát igényel, vagy ha egy `useState` túl nagyra nő.
 
-```jsx
-import React, { useReducer } from 'react';
+  ```jsx
+  import React, { useReducer } from 'react';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    default:
-      throw new Error();
-  }
-};
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'increment':
+        return { count: state.count + 1 };
+      case 'decrement':
+        return { count: state.count - 1 };
+      default:
+        throw new Error();
+    }
+  };
 
-const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+  const Counter = () => {
+    const [state, dispatch] = useReducer(reducer, { count: 0 });
 
-  return (
-    <div>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
-    </div>
-  );
-};
-```
+    return (
+      <div>
+        <p>Count: {state.count}</p>
+        <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+        <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+      </div>
+    );
+  };
+  ```
 
 ### `useMemo` hook
 
 Számított értékek átmeneti tárolására a teljesítmény javítása érdekében.
 Használd, ha egy függvény vagy érték újraszámítása művelet igényes.
 
-```jsx
-import React, { useMemo } from 'react';
+  ```jsx
+  import React, { useMemo } from 'react';
 
-const ExpensiveCalculation = ({ num }) => {
-  const compute = useMemo(() => {
-    console.log('Computing...');
-    return num * 2;
-  }, [num]);
+  const ExpensiveCalculation = ({ num }) => {
+    const compute = useMemo(() => {
+      console.log('Computing...');
+      return num * 2;
+    }, [num]);
 
-  return <p>Computed value: {compute}</p>;
-};
-```
+    return <p>Computed value: {compute}</p>;
+  };
+  ```
 
 ### `useCallback` hook
 
 Feladata a függvények memorizálása, hogy ne hozzunk létre új függvényt minden renderelésnél.
 Jól használható, ha egy függvényt propként adsz át egy al-komponensnek, és szeretnéd elkerülni az új függvények létrejöttét.
 
-```jsx
-import React, { useState, useCallback } from 'react';
+  ```jsx
+  import React, { useState, useCallback } from 'react';
 
-const Button = React.memo(({ onClick }) => {
-  console.log('Button rendered');
-  return <button onClick={onClick}>Click me</button>;
-});
+  const Button = React.memo(({ onClick }) => {
+    console.log('Button rendered');
+    return <button onClick={onClick}>Click me</button>;
+  });
 
-const App = () => {
-  const [count, setCount] = useState(0);
+  const App = () => {
+    const [count, setCount] = useState(0);
 
-  const handleClick = useCallback(() => {
-    setCount((prev) => prev + 1);
-  }, []);
+    const handleClick = useCallback(() => {
+      setCount((prev) => prev + 1);
+    }, []);
 
-  return <Button onClick={handleClick} />;
-};
-```
+    return <Button onClick={handleClick} />;
+  };
+  ```
 
 ### `useRef` hook
 
 DOM elemek elérésére vagy állandó értékek tárolására újrarenderelés nélkül.
 Ha manuálisan szeretnél DOM elemet kezelni, vagy ha olyan adatot szeretnél tárolni, amely nem vált ki új renderelést.
 
-```jsx
-import React, { useRef } from 'react';
+  ```jsx
+  import React, { useRef } from 'react';
 
-const InputFocus = () => {
-  const inputRef = useRef();
+  const InputFocus = () => {
+    const inputRef = useRef();
 
-  const focusInput = () => {
-    inputRef.current.focus();
+    const focusInput = () => {
+      inputRef.current.focus();
+    };
+
+    return (
+      <div>
+        <input ref={inputRef} type="text" />
+        <button onClick={focusInput}>Focus Input</button>
+      </div>
+    );
   };
-
-  return (
-    <div>
-      <input ref={inputRef} type="text" />
-      <button onClick={focusInput}>Focus Input</button>
-    </div>
-  );
-};
-```
+  ```
 
 ### `useLayoutEffect` hook
 
 Használható a DOM manipuláció előtt, de általában csak speciális esetekben szükséges.
 
-```jsx
-import React, { useLayoutEffect, useRef } from 'react';
+  ```jsx
+  import React, { useLayoutEffect, useRef } from 'react';
 
-const LayoutEffectExample = () => {
-  const ref = useRef();
+  const LayoutEffectExample = () => {
+    const ref = useRef();
 
-  useLayoutEffect(() => {
-    ref.current.style.color = 'red';
-  }, []);
+    useLayoutEffect(() => {
+      ref.current.style.color = 'red';
+    }, []);
 
-  return <div ref={ref}>This text is red!</div>;
-};
-```
+    return <div ref={ref}>This text is red!</div>;
+  };
+  ```
 
 ### Hookok összefoglalása
 
-| Hook | Funkció | Használati javaslatok |
-| --- | --- | --- |
-| `useState` | Állapot kezelés | Használati javaslatok |
-| `useEffect` | Életciklus események | API hívások, időzítők |
-| `useContext` | Globális állapot vagy adat megosztása | Témák, nyelvi beállítások |
-| `useReducer` | Összetett állapot kezelés | Bejelentkezési állapot, kosár adatok, ... |
-| `useMemo` | Számított értékek memorizálása | Teljesítmény optimalizálás |
-| `useCallback` | Függvények memorizálása | Propként átadott függvények |
-| `useRef` | DOM elemek kezelése vagy állandó tárolás | Fókuszkezelés, régi érték tárolása |
-| `useLayoutEffect` | DOM manipuláció közvetlen renderelés előtt | Méretre igazítás, vizuális manipuláció |
+  | Hook | Funkció | Használati javaslatok |
+  | --- | --- | --- |
+  | `useState` | Állapot kezelés | Használati javaslatok |
+  | `useEffect` | Életciklus események | API hívások, időzítők |
+  | `useContext` | Globális állapot vagy adat megosztása | Témák, nyelvi beállítások |
+  | `useReducer` | Összetett állapot kezelés | Bejelentkezési állapot, kosár adatok, ... |
+  | `useMemo` | Számított értékek memorizálása | Teljesítmény optimalizálás |
+  | `useCallback` | Függvények memorizálása | Propként átadott függvények |
+  | `useRef` | DOM elemek kezelése vagy állandó tárolás | Fókuszkezelés, régi érték tárolása |
+  | `useLayoutEffect` | DOM manipuláció közvetlen renderelés előtt | Méretre igazítás, vizuális manipuláció |
 
+### [Context](https://react.dev/learn/passing-data-deeply-with-context)
 
-### Context API
+A komponensek között a propok átadása bonyolulttá és kényelmetlenné válhat, ha egy propot mélyen kell továbbadni a komponensfában, vagy ha sok komponensnek van szüksége ugyanarra az adatra.
+Ez a jelenség `prop drilling` néven ismert.
 
-Tanuld meg, hogyan lehet megosztani adatokat a komponensek között anélkül, hogy props-okat kellene lefelé küldeni minden szinten.
+A `context` lehetővé teszi, hogy propok átadása nélkül juttassunk el adatokat a komponensfa bármely szintjén lévő komponensekhez.
+
+> Fontos:
+A context nem állapotkezelő megoldás, hanem egy adatmegosztási mechanizmus.
+Az állapotot általában `useState` vagy `useReducer` kezeli, a context pedig ezt az állapotot teszi elérhetővé.
+
+#### Context létrehozása
+
+  ```jsx
+  import { createContext } from 'react';
+
+  export const MyContext = createContext();
+  ```
+
+- A `createContext()` létrehoz egy kontextus objektumot
+- Opcionálisan megadható **alapértelmezett érték**
+- Az alapértelmezett érték csak akkor használódik, ha nincs Provider
+
+Példa alapértelmezett értékkel:
+
+  ```jsx
+  export const ThemeContext = createContext('light');
+  ```
+
+#### Provider – az adatok biztosítása
+
+A context csak akkor használható, ha a komponenseket **Providerbe** csomagoljuk.
+
+```jsx
+import { MyContext } from './MyContext';
+
+function App() {
+  const value = 'Hello Context';
+
+  return (
+    <MyContext.Provider value={value}>
+      <Child />
+    </MyContext.Provider>
+  );
+}
+
+```
+
+- A value prop tartalmazza az átadott adatot
+- Minden alatta lévő komponens eléri ezt az értéket
+
+#### useContext – az adatok elérése
+
+  ```jsx
+  import { useContext } from 'react';
+  import { MyContext } from './MyContext';
+
+  function Child() {
+    const value = useContext(MyContext);
+
+    return <p>{value}</p>;
+  }
+  ````
+
+- A `useContext` feliratkozik a context értékére
+- Ha a value változik, a komponens újrarenderelődik
+
+#### Context + state együtt használva
+
+Ez a leggyakoribb és ajánlott használat.
+
+jsx
+import { createContext, useState } from 'react';
+
+export const CounterContext = createContext();
+
+export function CounterProvider({ children }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    <CounterContext.Provider value={{ count, setCount }}>
+      {children}
+    </CounterContext.Provider>
+  );
+}
+
+Használat:
+
+import { useContext } from 'react';
+import { CounterContext } from './CounterContext';
+
+function Counter() {
+  const { count, setCount } = useContext(CounterContext);
+
+  return (
+    <>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </>
+  );
+}
+
+Saját hook készítése (best practice)
+
+Ez tisztább, olvashatóbb kódot eredményez.
+
+import { createContext, useContext, useState } from 'react';
+
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}
+
+Használat:
+
+const { user, setUser } = useAuth();
 
 ### React Router
 
