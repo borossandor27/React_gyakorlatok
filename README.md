@@ -573,7 +573,7 @@ function Counter() {
 }
 ````
 
-#### Saját hook készítése *(best practice)*
+#### Saját hook készítése *)(best practice*
 
 Ez tisztább, olvashatóbb kódot eredményez.
 
@@ -602,11 +602,6 @@ Használat:
 ````jsx
 const { user, setUser } = useAuth();
 ````
-
-### React Router
-
-I
-## Állapotkezelés
 
 ### Redux vagy MobX
 
