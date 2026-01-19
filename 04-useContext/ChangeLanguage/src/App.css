@@ -1,0 +1,21 @@
+header {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+header .flags {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+header .flags img {
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+header .flags img:hover {
+  border-color: #007bff;
+}
