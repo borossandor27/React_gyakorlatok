@@ -1,4 +1,5 @@
-import Header from './layouts/Header'
+import Header from './hu/layouts/Header'
+import AlgoritmusPage from './hu/pages/AlgoritmusPage'
 import './App.css'
 
 function App() {
@@ -6,6 +7,9 @@ function App() {
   return (
     <>
     <Header />
+    <main>
+      <AlgoritmusPage />
+    </main>
     </>
   )
 }
