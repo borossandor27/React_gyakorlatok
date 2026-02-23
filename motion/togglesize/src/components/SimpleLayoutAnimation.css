@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: #61dafb;
+}
