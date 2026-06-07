@@ -91,7 +91,7 @@ Az alapértelmezett project szerkesztését az `src` mappában lévő fájlokkal
 ### React komponensek
 
 Funkcionális és osztály alapú komponenseket is készíthetünk.
-Hanygoljuk az osztály alapúakat!
+Az osztály alapúak már kevésbé elterjedtek, mivel a React 16.8 verziótól kezdve a hooks bevezetésével a funkcionális komponensek is képesek kezelni az állapotot és az életciklusokat, így az osztály alapú komponensek használata ritkábbá vált.
 
 #### Funkcionális komponensek
 
