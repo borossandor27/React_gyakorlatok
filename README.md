@@ -33,31 +33,38 @@ a böngésző DOM-ján úgy, hogy minimalizálja a szükséges változásokat.
 
 ### Létrehozás
 
-```Shell
-npm create vite@latest my-react-app 
-cd my-react-app
-npm install
-npm run dev
-```
+  ```Shell
+  npm create vite@latest my-react-app 
+  cd my-react-app
+  npm install
+  npm run dev
+  ```
 
 vagy
 
-```Shell
-npx create-vite@latest my-react-app
-cd my-react-app
-npm install
-npm run dev
-```
+  ```Shell
+  npx create-vite@latest my-react-app
+  cd my-react-app
+  npm install
+  npm run dev
+  ```
 
-Már többször előfordult, hogy a policy letiltotta a futást a `File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.` hibaüzenettel. Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a 
+A windows `ExecutionPolicy` legtöbbször tiltja a futást az npm-nek, és a következő hibaüzenetet kapjuk:
 
-```PowerShell
-  Set-ExecutionPolicy RemoteSigned
-```
+  ```cmd
+    File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
+  ```
+
+Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a
+
+  ```PowerShell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+    Get-ExecutionPolicy -List
+  ```
 
 paranccsal engedélyt adhatunk a node.js számára a futáshoz.
 
-Sikeres futatás után az alábbi könyvtárszerkezetet kapjuk:
+Sikeres project létrehozása után az alábbi könyvtárszerkezetet kapjuk:
 
   ```Shell
   hello-vite-app/
@@ -88,39 +95,39 @@ Hanygoljuk az osztály alapúakat!
 
 #### Funkcionális komponensek
 
-```jsx
-import React from 'react';
+  ```jsx
+  import React from 'react';
 
-// Egy egyszerű funkcionális komponens, amely köszönti a felhasználót
-const Greeting = ({ name }) => {
-  return (
-    <div>
-      <h1>Szia, {name}!</h1>
-      <p>Üdvözlünk a React világában!</p>
-    </div>
-  );
-};
+  // Egy egyszerű funkcionális komponens, amely köszönti a felhasználót
+  const Greeting = ({ name }) => {
+    return (
+      <div>
+        <h1>Szia, {name}!</h1>
+        <p>Üdvözlünk a React világában!</p>
+      </div>
+    );
+  };
 
-// Ezt a komponenst használhatod máshol is:
-export default Greeting;
-```
+  // Ezt a komponenst használhatod máshol is:
+  export default Greeting;
+  ```
 
 Használata:
 
-```jsx
-import React from 'react';
-import Greeting from './Greeting';
+  ```jsx
+  import React from 'react';
+  import Greeting from './Greeting';
 
-const App = () => {
-  return (
-    <div>
-      <Greeting name="Anna" />
-    </div>
-  );
-};
+  const App = () => {
+    return (
+      <div>
+        <Greeting name="Anna" />
+      </div>
+    );
+  };
 
-export default App;
-```
+  export default App;
+  ```
 
 #### Osztály alapú komponensek
 
@@ -220,7 +227,7 @@ A props (_az angol "properties" szóból származik_) a React komponensek közö
   }
   ```
 
-### Állapotok kezelése egy komponensen belül (`state`).
+### Állapotok kezelése egy komponensen belül (`state`)
 
 React-ben az állapotkezelés a `useState` hook segítségével történik, amely lehetővé teszi, hogy a funkcionális komponensek saját állapotokat definiáljanak és azok változásait kezeljék. Amikor az állapot megváltozik, React automatikusan újrarendereli a komponenst, így az mindig az aktuális állapotot jeleníti meg.
 
@@ -276,6 +283,7 @@ Hsználni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mez
   ```
 
 ### A `useEffect` hook
+
 Elsődleges feladat az életciklus események kezelése (pl. komponens betöltésekor, frissítésekor, vagy eltávolításakor végrehajtandó műveletek).
 De használható API hívásokhoz, eseményfigyelők beállításához, időzítők indításához/tisztításához.
 

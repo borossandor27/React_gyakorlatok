@@ -1,8 +1,4 @@
-# React védett oldalak *(Protected Routes)*
-
-Vannak oldalak, amelyeket csak adott felhasználók érhetnek el. pl. admin felület, saját profil, rendelési tételek, ...
-
-## A React Routerek típusai
+# A React Routerek típusai
 
 A Reactben háromféle router létezik :
 

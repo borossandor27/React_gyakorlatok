@@ -1,9 +1,0 @@
-    Vanilla
-    Vue
-    React
->   Preact
-    Lit
-    Svelte
-    Solid
-    Qwik
-    Others

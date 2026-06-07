@@ -1,6 +1,7 @@
-# Vádett lapok
+# React védett oldalak *(Protected Routes)*
 
-Ahhoz, hogy védett lapokat készíts React alkalmazásban (pl. csak bejelentkezett felhasználók számára elérhető oldalakat), React Router (v6) és hook-ok kombinációját kell használnod.
+Vannak oldalak, amelyeket csak adott felhasználók érhetnek el. pl. admin felület, saját profil, rendelési tételek, ...
+Ahhoz, hogy védett lapokat készíts React alkalmazásban *(pl. csak bejelentkezett felhasználók számára elérhető oldalakat)*, React Router (v6) és hook-ok kombinációját kell használnod.
 
 ## 1. React Router hook-ok (kötelező)
 
