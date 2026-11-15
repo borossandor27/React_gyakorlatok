@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./AuthProvider";
 
 // Komponensek
 import Navbar from "./layout/Navbar";

@@ -3,7 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom' // Új importok
 import './index.css'
 import App from './App.jsx'
-import Users, { usersLoader } from './Users.jsx' // Importáljuk a komponenst és a loadert
+import Users from './Users.jsx'
+import { usersLoader } from './usersLoader.js' // A lassú API hívást szimuláló loader
 
 const router = createBrowserRouter([
   {

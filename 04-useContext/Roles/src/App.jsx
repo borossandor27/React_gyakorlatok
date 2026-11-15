@@ -1,4 +1,4 @@
-import { AuthProvider } from "./components/AuthContext.jsx";
+import { AuthProvider } from "./components/AuthProvider.jsx";
 import AppRoutes from "./components/AppRouter.jsx";
 import Navigation from "./components/Navbar.jsx";
 

@@ -1,25 +1,5 @@
-import  { createContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import { createContext } from 'react';
 
-// Context létrehozása
+// Context létrehozása. A Provider komponens külön fájlban van (ThemeProvider.jsx),
+// hogy a komponenst tartalmazó fájl csak komponenst exportáljon.
 export const ThemeContext = createContext();
-
-// Context provider komponens
-export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light'); // Állapot kezelése
-
-    // Téma váltás funkció
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
-
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
-};
-
-ThemeProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-};

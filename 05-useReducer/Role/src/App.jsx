@@ -1,4 +1,4 @@
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from './context/AuthProvider'
 import Navigation from './context/Navbar'
 import AppRouter from './context/AppRouter'
 import './App.css'
