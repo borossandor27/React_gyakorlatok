@@ -1,19 +1,15 @@
 const CountryCard = ({ countryData }) => {
-  console.log("CountryCard komponens countryData prop:", countryData);
-  console.log(
-    "CountryCard komponens countryData prop tipus:",
-    typeof countryData
-  );
-  console.log(
-    "címer adat:",
-    countryData ? countryData.coatOfArms.svg : "Nincs adat"
-  );
+  // Amíg nincs adat, nem jelenítünk meg üres képeket és táblázatot
+  if (!countryData) {
+    return <h1>Betöltés...</h1>;
+  }
+
   return (
     <>
-      <img src={countryData ? countryData.flags.svg : ""} alt={countryData ? countryData.flags.alt : ""} className="flag flag-left" />
-      <img src={countryData ? countryData.flags.png : ""} alt={countryData ? countryData.flags.alt : ""} className="flag flag-right" />
-      <h1>{countryData ? countryData.name.common : "Loading..."}</h1>
-      {countryData && countryData.coatOfArms && countryData.coatOfArms.svg && (
+      <img src={countryData.flags.svg} alt={countryData.flags.alt} className="flag flag-left" />
+      <img src={countryData.flags.png} alt={countryData.flags.alt} className="flag flag-right" />
+      <h1>{countryData.name.common}</h1>
+      {countryData.coatOfArms && countryData.coatOfArms.png && (
         <div id="orszagcimer">
           <img
             src={countryData.coatOfArms.png}
@@ -24,19 +20,19 @@ const CountryCard = ({ countryData }) => {
       <table>
         <thead>
           <tr>
-            <th>Property</th>
-            <th>Value</th>
+            <th>Tulajdonság</th>
+            <th>Érték</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Főváros</td>
-            <td>{countryData ? countryData.capital : "N/A"}</td>
+            <td>{countryData.capital?.length ? countryData.capital.join(", ") : "N/A"}</td>
           </tr>
           <tr>
             <td>Fizető eszköz</td>
             <td>
-              {countryData && countryData.currencies
+              {countryData.currencies && Object.keys(countryData.currencies).length
                 ? Object.values(countryData.currencies)[0].name
                 : "Nincs adat"}
             </td>
@@ -44,35 +40,29 @@ const CountryCard = ({ countryData }) => {
           <tr>
             <td>Terület</td>
             <td>
-              {countryData
-                ? countryData.area
-                    .toLocaleString('hu-HU') + " km²"
-                : "N/A"}
+              {countryData.area.toLocaleString('hu-HU') + " km²"}
             </td>
           </tr>
           <tr>
             <td>Népesség</td>
             <td>
-              {countryData
-                ? countryData.population
-                    .toLocaleString('hu-HU') + " fő"
-                : "N/A"}
+              {countryData.population.toLocaleString('hu-HU') + " fő"}
             </td>
           </tr>
           <tr>
             <td>Vele határos országok</td>
-            <td>{countryData && countryData.borders && countryData.borders.length ? countryData.borders.join(", ") : "N/A"}</td>
+            <td>{countryData.borders?.length ? countryData.borders.join(", ") : "N/A"}</td>
           </tr>
         </tbody>
       </table>
       {/* TÉRKÉP MEGJELENÍTÉSE */}
-      {countryData && countryData.latlng && (
+      {countryData.latlng && (
         <div id="terkep">
           <iframe
             title={`${countryData.name.common} elhelyezkedése`}
             src={`https://maps.google.com/maps?q=${countryData.latlng[0]},${countryData.latlng[1]}&t=&z=6&ie=UTF8&iwloc=&output=embed`}
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>

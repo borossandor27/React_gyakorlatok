@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const Navigation = () => {
@@ -5,15 +6,16 @@ const Navigation = () => {
 
   return (
     <nav>
-      {/* Alapértelmezett hivatkozás */}
-      <a href="/">Főoldal</a>
+      {/* A Link nem tölti újra az oldalt, így az alkalmazás állapota megmarad.
+          Sima <a href="..."> esetén a böngésző az egész alkalmazást újratöltené. */}
+      <Link to="/">Főoldal</Link>
 
       {/* Szerepkör alapú megjelenítés */}
-      {user.isLoggedIn && <a href="/profile">Profil</a>}
+      {user.isLoggedIn && <Link to="/profile">Profil</Link>}
 
       {/* Csak Admin hivatkozás */}
-      {user.role === "admin" && <a href="/admin">Admin Kezelőfelület</a>}
-      <a href="/about">Az alkalmazásról</a>
+      {user.role === "admin" && <Link to="/admin">Admin Kezelőfelület</Link>}
+      <Link to="/about">Az alkalmazásról</Link>
 
       {/* Bejelentkezés/Kijelentkezés gomb dinamikusan */}
       {user.isLoggedIn ? (
@@ -24,7 +26,7 @@ const Navigation = () => {
           <button onClick={logout}>Kijelentkezés ({user.role})</button>
         </>
       ) : (
-        <a href="/login">Bejelentkezés</a>
+        <Link to="/login">Bejelentkezés</Link>
       )}
     </nav>
   );

@@ -1,4 +1,4 @@
-import { useAuth } from "../components/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 const AboutPage = () => {
   const { user, logout } = useAuth();
@@ -18,7 +18,7 @@ const AboutPage = () => {
       </div>
       <p>
         Ez az alkalmazás a felhasználói szerepkörök kezelését demonstrálja React
-        Context segítségével.
+        Context és useReducer segítségével.
       </p>
     </>
   );

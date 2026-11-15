@@ -25,25 +25,31 @@ function App() {
     fetchCountries();
   }, []);
 
-  async function fetchCountryDatas() {
-    try {
-      const res = await axios.get(
-        `https://restcountries.com/v3.1/alpha/${countryCode}`
-      );
-      // 1. Lépés: Kinyeri a letöltött adatokat a 'data' tulajdonságból
-      const countryArray = res.data[0];
-
-      //console.log("Letöltött ország adatok (tömb):", countryArray);
-
-      // 2. Lépés: Átadja a setCountryDatas-nak a TÖMB ELSŐ ELEMÉT (az ország objektumot)
-      setCountryDatas(countryArray);
-    } catch (error) {
-      console.log("Hiba tortent az adatok lekeresekor:", error);
-    }
-  }
-
+  // Lefut betöltéskor és minden alkalommal, amikor a kiválasztott ország megváltozik
   useEffect(() => {
+    // Ha a válasz megérkezése előtt másik országot választanak, a régi választ eldobjuk,
+    // különben egy később beérkező, elavult válasz felülírhatná a frisset.
+    let ignore = false;
+
+    async function fetchCountryDatas() {
+      try {
+        const res = await axios.get(
+          `https://restcountries.com/v3.1/alpha/${countryCode}`
+        );
+        // A válasz egy tömb, az első eleme az ország objektuma
+        if (!ignore) {
+          setCountryDatas(res.data[0]);
+        }
+      } catch (error) {
+        console.error("Hiba történt az adatok lekérésekor:", error);
+      }
+    }
+
     fetchCountryDatas();
+
+    return () => {
+      ignore = true;
+    };
   }, [countryCode]);
 
   return (
@@ -61,7 +67,7 @@ function App() {
         </select>
       </div>
 
-      <CountryCard countryData={countryDatas ? countryDatas : null} />
+      <CountryCard countryData={countryDatas} />
     </>
   );
 }

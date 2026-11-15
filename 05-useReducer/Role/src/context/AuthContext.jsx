@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 
 const AuthContext = createContext(null);
 
@@ -75,63 +75,63 @@ function authReducer(state, action) {
   }
 }
 
+// A felhasználók listája (ez lehetne egy külső adatbázis).
+// FIGYELEM: éles alkalmazásban jelszót soha nem tárolunk a kliens kódjában,
+// az ellenőrzést a szerver végzi!
+const users = [
+  { username: "admin", password: "admin123", role: "admin", userId: 1, userEmail: "admin@example.com" },
+  { username: "user", password: "user123", role: "registered", userId: 2, userEmail: "user@example.com" },
+  { username: "test", password: "test123", role: "registered", userId: 3, userEmail: "test@example.com" },
+];
+
 export const AuthProvider = ({ children }) => {
   // 4. useReducer használata
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const users = [
-    { 
-      username: "admin", 
-      password: "admin123", 
-      role: "admin", 
-      userId: 1, 
-      userEmail: "admin@example.com" 
-    },
-    // ... többi felhasználó
-  ];
-
   // 5. Műveletek (action creator-ek)
-  const login = (username, password) => {
+  // A login Promise-t ad vissza, mert a (szimulált) API hívás eredménye csak később
+  // érkezik meg. A hívó oldalon ezért await-tel kell megvárni.
+  const login = async (username, password) => {
     // Betöltés állapot beállítása
     dispatch({ type: AuthActions.SET_LOADING, payload: true });
-    
-    // Szimulált API hívás
-    setTimeout(() => {
-      const userData = users.find(user => 
-        user.username === username && user.password === password
-      );
 
-      if (userData) {
-        const user = {
-          isLoggedIn: true,
-          role: userData.role,
-          userName: userData.username,
-          userId: userData.userId,
-          userEmail: userData.userEmail
-        };
+    // Szimulált API hívás: fél másodperc várakozás
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-        // LocalStorage mentés
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('authUser', JSON.stringify(user));
-        }
+    const userData = users.find(user => 
+      user.username === username && user.password === password
+    );
 
-        // Sikeres bejelentkezés action
-        dispatch({
-          type: AuthActions.LOGIN_SUCCESS,
-          payload: user
-        });
+    if (userData) {
+      const user = {
+        isLoggedIn: true,
+        role: userData.role,
+        userName: userData.username,
+        userId: userData.userId,
+        userEmail: userData.userEmail
+      };
 
-        return { success: true, message: `Sikeres bejelentkezés!` };
-      } else {
-        // Sikertelen bejelentkezés action
-        dispatch({
-          type: AuthActions.LOGIN_FAILURE,
-          payload: { error: 'Hibás felhasználónév vagy jelszó!' }
-        });
-
-        return { success: false, message: 'Hibás felhasználónév vagy jelszó!' };
+      // LocalStorage mentés
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('authUser', JSON.stringify(user));
       }
-    }, 500); // Szimulált késleltetés
+
+      // Sikeres bejelentkezés action
+      dispatch({
+        type: AuthActions.LOGIN_SUCCESS,
+        payload: user
+      });
+
+      return { success: true, message: `Sikeres bejelentkezés!` };
+    } else {
+      // Sikertelen bejelentkezés action
+      dispatch({
+        type: AuthActions.LOGIN_FAILURE,
+        payload: { error: 'Hibás felhasználónév vagy jelszó!' }
+      });
+
+      return { success: false, message: 'Hibás felhasználónév vagy jelszó!' };
+    }
   };
 
   const logout = () => {

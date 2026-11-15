@@ -80,7 +80,7 @@ const DataTable = () => {
           </tr>
 
           <tr>
-            <FilterForm filters={filters} setFilters={setFilters} />
+            <FilterForm setFilters={setFilters} />
           </tr>
         </thead>
 

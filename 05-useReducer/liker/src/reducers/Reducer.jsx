@@ -1,4 +1,3 @@
-import { useReducer } from 'react';
 const initialState = {
   data: [],
   isLoading: false

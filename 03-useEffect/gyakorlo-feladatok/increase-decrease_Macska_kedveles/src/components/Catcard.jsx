@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Catcard.css";
 import VoteCard from "./VoteCard";
 
@@ -18,9 +18,6 @@ const Catcard = ({ imageURL, imageWidth, imageHeight }) => {
       return prevVotes;
     });
   };
-
-  // A Catcard stílusához szükséges képarány számítása (CSS-ben is használható)
-  const aspectRatio = imageWidth / imageHeight;
 
   return (
     <div className="cat-card">

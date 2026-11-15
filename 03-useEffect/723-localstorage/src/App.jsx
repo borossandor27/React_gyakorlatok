@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [name, setName] = useState("");
-
-  // Betöltés a localStorage-ból, amikor az oldal betöltődik
-  useEffect(() => {
-    const storedName = localStorage.getItem("name");
-    if (storedName) {
-      setName(storedName);
-    }
-  }, []);
+  // A kezdőértéket közvetlenül a localStorage-ból olvassuk ki.
+  // A useState-nek átadott függvény csak az első rendereléskor fut le.
+  // (Ha ezt külön useEffect-ben tennénk, a mentő effekt előbb felülírná
+  // a tárolt értéket az üres kezdőállapottal.)
+  const [name, setName] = useState(() => localStorage.getItem("name") ?? "");
 
   // Mentés a localStorage-ba, amikor a name változik
   useEffect(() => {

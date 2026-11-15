@@ -1,4 +1,4 @@
-import { useAuth } from "../components/AuthContext.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
 const UserProfile = () => {
   const { user, logout } = useAuth();
   return (

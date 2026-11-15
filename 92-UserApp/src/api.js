@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api-generator.retool.com/E6LSEs/user';
+const BASE_URL = 'https://retoolapi.dev/E6LSEs/user';
 
 export const getUsers = async () => {
   const response = await axios.get(BASE_URL);

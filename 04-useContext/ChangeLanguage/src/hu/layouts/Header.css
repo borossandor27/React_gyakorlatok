@@ -14,14 +14,22 @@ header .flags {
     margin-top: 10px;
 }
 
-header .flags img {
-    width: 40px;
-    height: 30px;
+header .flags button {
+    padding: 0;
+    background: none;
     cursor: pointer;
     border: 2px solid transparent;
     border-radius: 5px;
+    line-height: 0;
 }
 
-header .flags img:hover {
+header .flags img {
+    width: 40px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+header .flags button:hover,
+header .flags button.active {
     border-color: #007bff;
 }

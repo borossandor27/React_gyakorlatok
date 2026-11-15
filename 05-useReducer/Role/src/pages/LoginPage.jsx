@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { useAuth } from '../components/AuthContext.jsx'; 
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const { login, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    const result = login(username, password);
+    // A login aszinkron (szimulált hálózati kérés), ezért meg kell várni az eredményét
+    const result = await login(username, password);
     
     if (!result.success) {
       setError(result.message);
@@ -56,12 +57,14 @@ const LoginPage = () => {
         />
         <br />
         
-        <button type="submit">Bejelentkezés</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Bejelentkezés...' : 'Bejelentkezés'}
+        </button>
       </form>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
       
-      <p>Ha még nincs fiókja, <a href="/registration">regisztráljon itt</a>.</p>
+      <p>Ha még nincs fiókja, <Link to="/registration">regisztráljon itt</Link>.</p>
     </>
   );
 };

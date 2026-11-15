@@ -1,8 +1,16 @@
-import { useAuth } from '../components/AuthContext.jsx';
-    
+import { useEffect } from 'react';
+import { useAuth } from '../context/AuthContext.jsx';
+
 const LogOutPage = () => {
     const { logout } = useAuth();
-    logout();
+
+    // Állapotot renderelés közben nem módosíthatunk, ezért a kijelentkezést
+    // effektben végezzük: egyszer fut le, amikor az oldal megjelenik.
+    useEffect(() => {
+        logout();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <div>
             <h1>Kijelentkezés</h1>

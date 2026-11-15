@@ -31,7 +31,7 @@ const Main = () => {
             </ProtectedRoute>
           }
         />
-      </Routes>{" "}
+      </Routes>
     </main>
   );
 };

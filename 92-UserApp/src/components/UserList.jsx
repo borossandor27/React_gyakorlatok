@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getUsers } from '../api';
 
 function UserList({ onSelectUser }) {
@@ -6,8 +7,12 @@ function UserList({ onSelectUser }) {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const data = await getUsers();
-      setUsers(data);
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (err) {
+        console.error('Nem sikerült betölteni a felhasználókat:', err);
+      }
     };
     fetchUsers();
   }, []);
@@ -35,5 +40,9 @@ function UserList({ onSelectUser }) {
     </div>
   );
 }
+
+UserList.propTypes = {
+  onSelectUser: PropTypes.func.isRequired,
+};
 
 export default UserList;

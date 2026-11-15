@@ -2,16 +2,17 @@ import { getUsers } from '../api.js';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './UserList.css';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        getUsers().then((response) => setUsers(response.data));
+        getUsers()
+            .then((response) => setUsers(response.data))
+            .catch((error) => console.error('Failed to fetch users:', error));
     }, []);
 
     return (

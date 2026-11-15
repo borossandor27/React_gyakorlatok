@@ -1,7 +1,6 @@
-import React from "react";
 import "./FilterForm.css";
 
-const FilterForm = ({ filters, setFilters }) => {
+const FilterForm = ({ setFilters }) => {
   const handlechange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -13,9 +12,8 @@ const FilterForm = ({ filters, setFilters }) => {
 
   return (
     <>
-      <th>
-        <input name="id" id="id" onChange={handlechange} />
-      </th>
+      {/* Az első oszlop felett a keresés gombja áll, ide nem kell szűrőmező */}
+      <th></th>
       <th>
         <input
           name="TeljesNev"

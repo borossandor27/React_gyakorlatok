@@ -2,8 +2,21 @@
 import express from 'express';
 import pool from '../db/pool.mjs';
 
-const createRouter = (table, idField) => {
+// table:   a tábla neve
+// idField: az elsődleges kulcs oszlopának neve
+// columns: a módosítható oszlopok nevei
+//
+// FIGYELEM: az oszlopneveket nem lehet '?' helyőrzővel átadni, azok szövegként kerülnek
+// az SQL utasításba. Ezért a kérés törzséből csak az itt felsorolt (megengedett) mezőket
+// használjuk fel, különben a kliens tetszőleges SQL-t tudna beszúrni (SQL injection).
+const createRouter = (table, idField, columns) => {
     const router = express.Router();
+
+    // A kérés törzséből csak a megengedett oszlopokat tartjuk meg
+    const pickAllowed = (body) =>
+        Object.fromEntries(
+            Object.entries(body ?? {}).filter(([key]) => columns.includes(key))
+        );
 
     router.get('/', async (req, res) => {
         try {
@@ -26,13 +39,15 @@ const createRouter = (table, idField) => {
 
     router.post('/', async (req, res) => {
         try {
-            const fields = Object.keys(req.body);
-            const values = Object.values(req.body);
+            const data = pickAllowed(req.body);
+            const fields = Object.keys(data);
+            const values = Object.values(data);
+            if (fields.length === 0) return res.status(400).json({ error: 'Nincs menthető adat' });
             const [result] = await pool.query(
                 `INSERT INTO ${table} (${fields.join(', ')}) VALUES (${fields.map(() => '?').join(', ')})`,
                 values
             );
-            res.json({ [idField]: result.insertId, ...req.body });
+            res.status(201).json({ [idField]: result.insertId, ...data });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -40,14 +55,16 @@ const createRouter = (table, idField) => {
 
     router.put('/:id', async (req, res) => {
         try {
-            const fields = Object.keys(req.body);
-            const values = Object.values(req.body);
+            const data = pickAllowed(req.body);
+            const fields = Object.keys(data);
+            const values = Object.values(data);
+            if (fields.length === 0) return res.status(400).json({ error: 'Nincs menthető adat' });
             const [result] = await pool.query(
                 `UPDATE ${table} SET ${fields.map(f => `${f} = ?`).join(', ')} WHERE ${idField} = ?`,
                 [...values, req.params.id]
             );
             if (result.affectedRows === 0) return res.status(404).json({ error: 'Nem található' });
-            res.json({ [idField]: req.params.id, ...req.body });
+            res.json({ [idField]: req.params.id, ...data });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -68,13 +85,11 @@ const createRouter = (table, idField) => {
 
 export default createRouter;
 
-// routes fájlok generálása CRUD sablonnal
-import createRouter from './crudTemplate.mjs';
-
-export const artistRoutes = createRouter('artists', 'artistId');
-export const albumRoutes = createRouter('albums', 'albumId');
-export const genreRoutes = createRouter('genres', 'genreId');
-export const instrumentRoutes = createRouter('instruments', 'instrumentId');
-export const playlistRoutes = createRouter('playlists', 'plId');
-export const songRoutes = createRouter('songs', 'songId');
-export const userRoutes = createRouter('users', 'userId');
+// Használat egy másik fájlban (pl. routes/index.mjs) – az oszlopnevek az adatbázis
+// tábláinak megfelelően adandók meg:
+//
+// import createRouter from './crudTemplate.mjs';
+//
+// export const artistRoutes = createRouter('artists', 'artistId', ['name', 'country']);
+// export const albumRoutes = createRouter('albums', 'albumId', ['title', 'artistId', 'year']);
+// export const userRoutes = createRouter('users', 'userId', ['name', 'email']);

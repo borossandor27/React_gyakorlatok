@@ -1,16 +1,19 @@
+import { LanguageProvider } from './context/LanguageProvider'
 import Header from './hu/layouts/Header'
+import Footer from './hu/layouts/Footer'
 import AlgoritmusPage from './hu/pages/AlgoritmusPage'
 import './App.css'
 
 function App() {
 
   return (
-    <>
-    <Header />
-    <main>
-      <AlgoritmusPage />
-    </main>
-    </>
+    <LanguageProvider>
+      <Header />
+      <main>
+        <AlgoritmusPage />
+      </main>
+      <Footer />
+    </LanguageProvider>
   )
 }
 

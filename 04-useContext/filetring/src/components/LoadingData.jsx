@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 const LoadingData = () => {
-  const {adatok, setAdatok } = useContext(UserContext);
+  const { setAdatok } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const adatForrasURL = "https://retoolapi.dev/ljArL9/dataTypes";

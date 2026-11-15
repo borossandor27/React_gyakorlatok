@@ -13,18 +13,14 @@ function Navbar() {
     <nav>
       <NavLink to="/">Home</NavLink> |{" "}
       <NavLink to="/users">Users</NavLink> |{" "}
-      
-      {isAuth && (
+
+      {isAuth ? (
         <>
           <NavLink to="/dashboard">Dashboard</NavLink> |{" "}
           <button onClick={logout}>Kilépés</button>
         </>
-      )}
-
-      {!isAuth && (
-        <>
-          | <NavLink to="/login">Login</NavLink>
-        </>
+      ) : (
+        <NavLink to="/login">Login</NavLink>
       )}
     </nav>
   );

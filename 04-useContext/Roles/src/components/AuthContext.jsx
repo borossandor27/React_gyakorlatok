@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 // Firestore helyett LocalStorage-ot használunk az adatok megőrzésére,
 // de éles alkalmazásban Firebase Firestore lenne a javasolt.
@@ -6,37 +6,40 @@ const LOCAL_STORAGE_KEY = 'authUser';
 
 const AuthContext = createContext(null);
 
+// JSON tömb a felhasználói adatokkal (ez lehetne egy külső adatbázis).
+// A komponensen kívül definiáljuk, hogy ne jöjjön létre újra minden rendereléskor.
+// FIGYELEM: éles alkalmazásban jelszót soha nem tárolunk a kliens kódjában,
+// az ellenőrzést a szerver végzi!
+const users = [
+    { 
+        username: "admin", 
+        password: "admin123", 
+        role: "admin", 
+        userId: 1, 
+        userEmail: "admin@example.com" 
+    },
+    { 
+        username: "user", 
+        password: "user123", 
+        role: "registered", 
+        userId: 2, 
+        userEmail: "user@example.com" 
+    },
+    { 
+        username: "test", 
+        password: "test123", 
+        role: "registered", 
+        userId: 3, 
+        userEmail: "test@example.com" 
+    }
+];
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({
         isLoggedIn: false,
         role: "guest",
     });
-    const [isLoading, setIsLoading] = useState(true); // ÚJ: Betöltési állapot
-
-    // JSON tömb a felhasználói adatokkal (ez lehetne egy külső adatbázis)
-    const users = [
-        { 
-            username: "admin", 
-            password: "admin123", 
-            role: "admin", 
-            userId: 1, 
-            userEmail: "admin@example.com" 
-        },
-        { 
-            username: "user", 
-            password: "user123", 
-            role: "registered", 
-            userId: 2, 
-            userEmail: "user@example.com" 
-        },
-        { 
-            username: "test", 
-            password: "test123", 
-            role: "registered", 
-            userId: 3, 
-            userEmail: "test@example.com" 
-        }
-    ];
+    const [isLoading, setIsLoading] = useState(true); // Betöltési állapot
 
     // Alkalmazás indításakor betöltjük a mentett adatokat a LocalStorage-ból
     useEffect(() => {

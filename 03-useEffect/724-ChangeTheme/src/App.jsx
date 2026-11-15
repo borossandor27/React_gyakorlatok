@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  // Alapértelmezett téma: 'light'
-  const [theme, setTheme] = useState("light");
-
-  // Betöltéskor ellenőrizzük, volt-e mentett téma
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.body.className = savedTheme; // <-- beállítjuk a body osztályát
-    }
-  }, []);
+  // A kezdőérték a mentett téma, ha van; különben 'light'.
+  // A useState-nek átadott függvény csak az első rendereléskor fut le.
+  // (Ha a betöltést külön useEffect végezné, a mentő effekt előbb
+  // felülírná a tárolt témát az alapértelmezettel.)
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") ?? "light"
+  );
 
   // Ha változik a téma, mentjük és frissítjük a DOM-ot is
   useEffect(() => {

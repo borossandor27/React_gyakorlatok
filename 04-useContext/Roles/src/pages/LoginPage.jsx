@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../components/AuthContext.jsx'; 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -61,7 +61,7 @@ const LoginPage = () => {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
       
-      <p>Ha még nincs fiókja, <a href="/registration">regisztráljon itt</a>.</p>
+      <p>Ha még nincs fiókja, <Link to="/registration">regisztráljon itt</Link>.</p>
     </>
   );
 };

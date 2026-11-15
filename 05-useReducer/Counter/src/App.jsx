@@ -1,6 +1,8 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 
-function App() {
+// A reducert, a kezdőállapotot és a Counter komponenst az App-on KÍVÜL definiáljuk.
+// Ha egy komponenst egy másik komponens belsejében hozunk létre, minden rendereléskor
+// új komponens keletkezik, és az állapota elveszik.
 
 // 1. Reducer függvény definiálása
 function counterReducer(state, action) {
@@ -69,6 +71,8 @@ function Counter() {
     </div>
   );
 }
+
+function App() {
   return (
     <>
       <Counter />

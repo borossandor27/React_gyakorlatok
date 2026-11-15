@@ -94,7 +94,20 @@ Kliensoldali navigációt biztosít, az **oldal újratöltése nélkül**.
 - Az `<a>` HTML elem React-alternatívája.
 - A **`to`** propban kell megadni az útvonalat.
 
-## `NavLink`
+## `<NavLink>`
+
+A `Link` olyan változata, amely tudja, hogy éppen az általa mutatott útvonal van-e megnyitva.
+
+- Az aktív hivatkozás automatikusan megkapja az `active` CSS osztályt.
+- A `className` (és a `style`) propnak függvény is adható, amely megkapja az `isActive` és `isPending` értéket.
+
+  ```jsx
+      <NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")}>
+        About
+      </NavLink>
+  ```
+
+> [!NOTE]  Az `isPending` csak *data router* (`createBrowserRouter` + `RouterProvider`) használatakor lehet igaz, amíg az útvonal `loader` függvénye fut. `BrowserRouter` esetén mindig hamis.
 
 ## Összegzés
 

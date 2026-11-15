@@ -1,6 +1,6 @@
 import Hearts from "./Hearts";
 import axios from "axios";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { initialState, reducer } from "../reducers/Reducer";
 import "./Table.css";
 
@@ -17,7 +17,10 @@ const Table = () => {
         // Frissítés a reduceren keresztül
         dispatch({ type: "SET_USERS", payload: response.data });
       })
-      .catch((error) => console.error("Hiba:", error));
+      .catch((error) => {
+        console.error("Hiba:", error);
+        dispatch({ type: "SET_LOADING", payload: false });
+      });
   }, []);
 
   // Ez a függvény küldi el az "üzenetet" a reducernek

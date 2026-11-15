@@ -1,17 +1,31 @@
-import { deleteUser, getUserById } from "../api";
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { deleteUser } from '../api';
+import { useUser } from './useUser';
+
+// Megerősítést kér, és csak utána törli a felhasználót.
+// (A komponens törzsében nem indíthatunk hálózati kérést és nem nyithatunk
+// párbeszédablakot: a renderelésnek mellékhatás nélkülinek kell lennie.)
 const DeleteUser = () => {
-    // rákérdez a felhasználótól, hogy tényleg törölni akarja-e a felhasználót
-    // ha igen, akkor törli a felhasználót az adatbázisból
-    // ha nem, akkor visszairányítja a felhasználót a felhasználók listájára
-    let id = window.location.pathname.split('/').pop();
-    const user = getUserById(id).then((response) => response.data).catch((error) => alert('Failed to fetch user: ' + error.message));
-    const confirmDelete = window.confirm(`Do you really want to delete user: ${user.name}?`);
-    if (confirmDelete) {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const { user, error } = useUser(id);
+
+    const handleDelete = () => {
         deleteUser(id)
-            .then(() => alert('User deleted successfully!'))
-            .catch((error) => alert('Failed to delete user: ' + error.message));
-    } else {
-        window.location.href = '/';
-    }
+            .then(() => navigate('/'))
+            .catch((err) => alert('Failed to delete user: ' + err.message));
+    };
+
+    if (error) return <p>Failed to fetch user: {error}</p>;
+    if (!user) return <p>Loading...</p>;
+
+    return (
+        <div>
+            <h1>Delete User</h1>
+            <p>Do you really want to delete user: {user.name}?</p>
+            <button className="btn btn-danger" onClick={handleDelete}>Delete</button>{' '}
+            <Link className="btn btn-secondary" to="/">Cancel</Link>
+        </div>
+    );
 };
 export default DeleteUser;

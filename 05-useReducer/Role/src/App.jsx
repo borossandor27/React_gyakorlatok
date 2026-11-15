@@ -1,15 +1,15 @@
-import {useAuth} from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
+import Navigation from './context/Navbar'
+import AppRouter from './context/AppRouter'
 import './App.css'
 
-function AppContent() {
-  return <h1>Role Based Access Control</h1>
-}
 function App() {
-
   return (
-    <>
-      <AppContent />
-    </>
+    <AuthProvider>
+      <h1>Role Based Access Control</h1>
+      <Navigation />
+      <AppRouter />
+    </AuthProvider>
   )
 }
 

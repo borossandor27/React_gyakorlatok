@@ -1,7 +1,9 @@
 import styles from './UserCard.module.css'; // CSS fájl importálása
 import PropTypes from 'prop-types';
 
-const UserCard = ({ name, age, hobbies }) => {
+// Az alapértelmezett értékeket a paraméterlistában adjuk meg.
+// (A függvénykomponensek defaultProps tulajdonságát a React 19 már nem támogatja.)
+const UserCard = ({ name = 'Unknown User', age, hobbies = [] }) => {
     return (
         <div className={styles["user-card"]}>
             <h2>{name}</h2>
@@ -14,12 +16,6 @@ const UserCard = ({ name, age, hobbies }) => {
             </ul>
         </div>
     );
-};
-
-UserCard.defaultProps = {
-    name: 'Unknown User',
-    age: 'N/A',
-    hobbies: [],
 };
 
 UserCard.propTypes = {

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/user";
@@ -104,8 +104,8 @@ function ControlledForm() {
   // D. KOMPONENS RENDERELÉSE
   return (
     <div
+      id="formContainer"
       style={{
-        id: "formContainer",
         padding: "20px",
         maxWidth: "400px",
         margin: "auto",
@@ -119,7 +119,20 @@ function ControlledForm() {
 
         {/* Vezetéknév */}
         <div className="inputRow">
-          <label htmlFor="firstName">Vezetéknév:</label>
+          <label htmlFor="lastName">Vezetéknév:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* Keresztnév */}
+        <div className="inputRow">
+          <label htmlFor="firstName">Keresztnév:</label>
           <input
             type="text"
             id="firstName"
@@ -130,58 +143,47 @@ function ControlledForm() {
           />
         </div>
 
-        {/* Keresztnév */}
-        <div className="inputRow">  
-        <label htmlFor="lastName">Keresztnév:</label>
-        <input
-          type="text"
-          id="lasttName"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
-
         {/* Jelszó */}
-        <div className="inputRow">  
-        <label htmlFor="password">Jelszó:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <div className="inputRow">
+          <label htmlFor="password">Jelszó:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         {/* Születési idő */}
         <div className="inputRow">
-        <label htmlFor="dob">Születési idő:</label>
-        <input
-          type="date"
-          id="dob"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="dob">Születési idő:</label>
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         {/* Érdeklődési terület (Select) */}
-        <div className="inputRow"></div>
-        <label htmlFor="interest">Érdeklődési terület:</label>
-        <select
-          id="interest"
-          name="interest"
-          value={formData.interest}
-          onChange={handleChange}
-        >
-          <option value="frontend">Frontend Fejlesztés</option>
-          <option value="backend">Backend Fejlesztés</option>
-          <option value="devops">DevOps</option>
-        </select>
+        <div className="inputRow">
+          <label htmlFor="interest">Érdeklődési terület:</label>
+          <select
+            id="interest"
+            name="interest"
+            value={formData.interest}
+            onChange={handleChange}
+          >
+            <option value="frontend">Frontend Fejlesztés</option>
+            <option value="backend">Backend Fejlesztés</option>
+            <option value="devops">DevOps</option>
+          </select>
         </div>
+
         {/* Hírlevél (Checkbox) */}
         <div className="inputRow">
         <label>

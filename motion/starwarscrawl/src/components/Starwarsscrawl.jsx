@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "https://cdn.skypack.dev/gsap";
+import { gsap } from "gsap";
 
 const crawlText = `Egy távoli galaxisban, réges-régen...
 
@@ -221,13 +221,17 @@ export default function StarWarsCrawl() {
 }
 
 function Stars() {
-  const stars = Array.from({ length: 200 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2.5 + 0.5,
-    opacity: Math.random() * 0.7 + 0.3,
-  }));
+  // A véletlen csillagokat csak egyszer, az első rendereléskor állítjuk elő.
+  // Különben minden újrarendereléskor máshová kerülnének.
+  const [stars] = useState(() =>
+    Array.from({ length: 200 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2.5 + 0.5,
+      opacity: Math.random() * 0.7 + 0.3,
+    }))
+  );
 
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>

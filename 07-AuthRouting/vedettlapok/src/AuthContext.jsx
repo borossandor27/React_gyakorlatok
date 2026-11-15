@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 
 const AuthContext = createContext({});
 const users=[
@@ -7,29 +7,18 @@ const users=[
 ];
 const tokenKey = "auth_token";
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Token ellenőrzése localStorage-ből vagy API-ból
+  // A kezdőállapotot a localStorage-ben tárolt tokenből állítjuk elő.
+  // A useState-nek átadott függvény csak az első rendereléskor fut le.
+  const [user, setUser] = useState(() => {
     const token = localStorage.getItem(tokenKey);
-    if (token) {
-      // Validálás API hívással (vagy helyileg)
-      const fetchUserData = async (token) => {
-        // Itt szimuláljuk az API hívást
-        const foundUser = users.find(u => u.token === token);
-        if (foundUser) {
-          setUser(foundUser);
-        } else {
-          localStorage.removeItem(tokenKey);
-        }
-        setLoading(false);
-      };
-      fetchUserData(token);
-    } else {
-      setLoading(false);
-    }
-  }, []);
+    const foundUser = users.find((u) => u.token === token);
+    // A jelszót nem tartjuk az állapotban
+    return foundUser ? { email: foundUser.email } : null;
+  });
+
+  // Itt a token ellenőrzése helyben, azonnal megtörténik, ezért nincs várakozás.
+  // Ha a tokent API hívással ellenőriznénk, a válasz megérkezéséig true lenne.
+  const loading = false;
 
   const login = async (credentials) => {
     // Bejelentkezési logika
@@ -37,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       (u) => u.email === credentials.email && u.password === credentials.password
     );
     if (foundUser) {
-      setUser(foundUser);
+      setUser({ email: foundUser.email });
       localStorage.setItem(tokenKey, foundUser.token);
     } else {
       throw new Error("Invalid credentials");

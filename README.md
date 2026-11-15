@@ -55,22 +55,21 @@ A windows `ExecutionPolicy` legtöbbször tiltja a futást az npm-nek, és a kö
     File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
   ```
 
-Az engedélyezéshez a Power Shell-t rendszergazdaként kell futtatni és a
+Az engedélyezéshez a PowerShellben a
 
   ```PowerShell
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
     Get-ExecutionPolicy -List
   ```
 
-paranccsal engedélyt adhatunk a node.js számára a futáshoz.
+paranccsal engedélyt adhatunk a node.js számára a futáshoz. A `CurrentUser` hatókör csak a saját felhasználónkra vonatkozik, ezért nem kell hozzá rendszergazdai jog. (Ha a gép minden felhasználójának engedélyezni szeretnénk, akkor rendszergazdaként, `-Scope LocalMachine` kapcsolóval kell futtatni.)
 
 Sikeres project létrehozása után az alábbi könyvtárszerkezetet kapjuk:
 
   ```Shell
-  hello-vite-app/
+  my-react-app/
   ├── node_modules/
   ├── public/
-  │   ├── favicon.ico
   │   └── vite.svg
   ├── src/
   │   ├── assets/
@@ -95,9 +94,9 @@ Az osztály alapúak már kevésbé elterjedtek, mivel a React 16.8 verziótól 
 
 #### Funkcionális komponensek
 
-  ```jsx
-  import React from 'react';
+> A React 17 óta a JSX használatához nem kell a `React`-et importálni (`import React from 'react'`), elég azt behozni, amit ténylegesen használunk, például `import { useState } from 'react'`.
 
+  ```jsx
   // Egy egyszerű funkcionális komponens, amely köszönti a felhasználót
   const Greeting = ({ name }) => {
     return (
@@ -115,7 +114,6 @@ Az osztály alapúak már kevésbé elterjedtek, mivel a React 16.8 verziótól 
 Használata:
 
   ```jsx
-  import React from 'react';
   import Greeting from './Greeting';
 
   const App = () => {
@@ -134,7 +132,7 @@ Használata:
 Az osztály alapú komponenseket akkor használták, amikor a komponenseknek belső állapotra (state) vagy lifecycle metódusokra volt szükségük. Azonban a React 16.8 verziótól kezdve, a hooks bevezetésével a funkcionális komponensek is képesek kezelni az állapotot és az életciklusokat, így az osztály alapú komponensek használata ritkábbá vált.
 
   ```jsx
-  import React, { Component } from 'react';
+  import { Component } from 'react';
 
   // Egy osztály alapú komponens, amely köszönti a felhasználót
   class Greeting extends Component {
@@ -156,10 +154,10 @@ Az osztály alapú komponenseket akkor használták, amikor a komponenseknek bel
 Használat:
 
   ```jsx
-  import React from 'react';
+  import { Component } from 'react';
   import Greeting from './Greeting';
 
-  class App extends React.Component {
+  class App extends Component {
     render() {
       return (
         <div>
@@ -177,8 +175,6 @@ Használat:
 A React egyedi szintaxisa, ami lehetővé teszi a JavaScript és HTML kombinációját. Kibővíti a JavaScript lehetőségeit, segítségével deklaratív módon írjuk le a felhasználói felületeket. Használata olvashatóbbá és struktúráltabbá teszi a kódot.
 
   ```jsx
-  import React from 'react';
-
   const App = () => {
     const user = {
       name: 'Anna',
@@ -253,11 +249,13 @@ Több összefüggő adat esetén használjunk objektumokat és ezek állapotáho
 A `useEffect` hookot használhatjuk, hogy a komponens különböző életciklus-eseményeire reagáljunk, például:
 
 - Komponens betöltésekor (mounting). `[]` → egyszer fut (*adatlekérés tipikusan így megy*)
-- nincs [] → minden render után fut.
-- Állapot vagy props változásakor (updating). `[valtozo]` → fut, ha valtozo megváltozik.
-- Komponens eltávolításakor (unmounting).
+- nincs `[]` → minden render után fut.
+- Állapot vagy props változásakor (updating). `[valtozo]` → fut, ha `valtozo` megváltozik.
+- Komponens eltávolításakor (unmounting) → az effekt által visszaadott takarító (cleanup) függvény fut le.
 
-(*pl. `componentDidMount`, `componentDidUpdate`*).
+Ezek az osztály alapú komponensek `componentDidMount`, `componentDidUpdate` és `componentWillUnmount` metódusainak felelnek meg.
+
+> Fejlesztői módban a `StrictMode` minden komponenst kétszer renderel, és az effekteket is kétszer futtatja (betöltés → takarítás → betöltés), hogy a hiányzó takarítás hamar kiderüljön. Az éles (build) változatban ez nem történik meg.
 
 ### [Hook-ok](https://react.dev/reference/react/hooks)
 
@@ -265,10 +263,10 @@ React-ben a hookok olyan speciális függvények, amelyek segítségével a funk
 
 ### A `useState` hook
 
-Hsználni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mezők értékei, gomb állapota_), amelyek idővel változhatnak.
+Használni kell, ha a komponensnek változtatható elemei vannak (_pl. űrlap mezők értékei, gomb állapota_), amelyek idővel változhatnak.
 
   ```jsx
-  import React, { useState } from 'react';
+  import { useState } from 'react';
 
   const Counter = () => {
     const [count, setCount] = useState(0);
@@ -288,7 +286,7 @@ Elsődleges feladat az életciklus események kezelése (pl. komponens betölté
 De használható API hívásokhoz, eseményfigyelők beállításához, időzítők indításához/tisztításához.
 
   ```jsx
-  import React, { useState, useEffect } from 'react';
+  import { useState, useEffect } from 'react';
 
   const Timer = () => {
     const [time, setTime] = useState(0);
@@ -329,7 +327,7 @@ Feladata a globális állapot vagy adat megosztása komponensek között.
 Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használnia (pl. felhasználói bejelentkezési állapot).
 
   ```jsx
-  import React, { createContext, useContext } from 'react';
+  import { createContext, useContext } from 'react';
 
   const ThemeContext = createContext('light');
 
@@ -353,7 +351,7 @@ Használnunk kell ha egy állapotot vagy adatot több komponensnek kell használ
 Használni kell, ha a komponens állapota bonyolult logikát igényel, vagy ha egy `useState` túl nagyra nő.
 
   ```jsx
-  import React, { useReducer } from 'react';
+  import { useReducer } from 'react';
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -385,7 +383,7 @@ Számított értékek átmeneti tárolására a teljesítmény javítása érdek
 Használd, ha egy függvény vagy érték újraszámítása művelet igényes.
 
   ```jsx
-  import React, { useMemo } from 'react';
+  import { useMemo } from 'react';
 
   const ExpensiveCalculation = ({ num }) => {
     const compute = useMemo(() => {
@@ -403,9 +401,9 @@ Feladata a függvények memorizálása, hogy ne hozzunk létre új függvényt m
 Jól használható, ha egy függvényt propként adsz át egy al-komponensnek, és szeretnéd elkerülni az új függvények létrejöttét.
 
   ```jsx
-  import React, { useState, useCallback } from 'react';
+  import { memo, useState, useCallback } from 'react';
 
-  const Button = React.memo(({ onClick }) => {
+  const Button = memo(({ onClick }) => {
     console.log('Button rendered');
     return <button onClick={onClick}>Click me</button>;
   });
@@ -427,7 +425,7 @@ DOM elemek elérésére vagy állandó értékek tárolására újrarenderelés 
 Ha manuálisan szeretnél DOM elemet kezelni, vagy ha olyan adatot szeretnél tárolni, amely nem vált ki új renderelést.
 
   ```jsx
-  import React, { useRef } from 'react';
+  import { useRef } from 'react';
 
   const InputFocus = () => {
     const inputRef = useRef();
@@ -447,10 +445,10 @@ Ha manuálisan szeretnél DOM elemet kezelni, vagy ha olyan adatot szeretnél t�
 
 ### `useLayoutEffect` hook
 
-Használható a DOM manipuláció előtt, de általában csak speciális esetekben szükséges.
+Ugyanúgy működik, mint a `useEffect`, de szinkron módon fut le: a DOM módosítása után, még mielőtt a böngésző kirajzolná a képernyőt. Akkor van rá szükség, ha a megjelenítés előtt kell egy elemet megmérni vagy igazítani (különben villanás látszana). Mivel blokkolja a kirajzolást, csak speciális esetekben használjuk.
 
   ```jsx
-  import React, { useLayoutEffect, useRef } from 'react';
+  import { useLayoutEffect, useRef } from 'react';
 
   const LayoutEffectExample = () => {
     const ref = useRef();
@@ -467,14 +465,14 @@ Használható a DOM manipuláció előtt, de általában csak speciális esetekb
 
   | Hook | Funkció | Használati javaslatok |
   | --- | --- | --- |
-  | `useState` | Állapot kezelés | Használati javaslatok |
+  | `useState` | Állapot kezelés | Űrlapmezők, számlálók, kapcsolók |
   | `useEffect` | Életciklus események | API hívások, időzítők |
   | `useContext` | Globális állapot vagy adat megosztása | Témák, nyelvi beállítások |
   | `useReducer` | Összetett állapot kezelés | Bejelentkezési állapot, kosár adatok, ... |
   | `useMemo` | Számított értékek memorizálása | Teljesítmény optimalizálás |
   | `useCallback` | Függvények memorizálása | Propként átadott függvények |
   | `useRef` | DOM elemek kezelése vagy állandó tárolás | Fókuszkezelés, régi érték tárolása |
-  | `useLayoutEffect` | DOM manipuláció közvetlen renderelés előtt | Méretre igazítás, vizuális manipuláció |
+  | `useLayoutEffect` | Effekt a DOM frissítése után, a képernyő kirajzolása előtt | Elemek mérése, pozicionálás villanás nélkül |
 
 ### [Context API](https://react.dev/learn/passing-data-deeply-with-context)
 
@@ -538,14 +536,14 @@ function App() {
 
     return <p>{value}</p>;
   }
-  ````
+  ```
 
 - A `useContext` feliratkozik a context értékére
 - Ha a value változik, a komponens újrarenderelődik
 
-Context és state együtt használva
+#### Context és state együtt használva
 
-#### Ez a leggyakoribb és ajánlott használat.
+Ez a leggyakoribb és ajánlott használat.
 
 ````jsx
 import { createContext, useState } from 'react';
@@ -581,7 +579,7 @@ function Counter() {
 }
 ````
 
-#### Saját hook készítése *)(best practice*
+#### Saját hook készítése (*best practice*)
 
 Ez tisztább, olvashatóbb kódot eredményez.
 
@@ -613,7 +611,7 @@ const { user, setUser } = useAuth();
 
 ### Redux vagy MobX
 
-Tanuld meg, hogyan lehet komplex állapotokat kezelni egy alkalmazásban. A Redux a legnépszerűbb állapotkezelő könyvtár Reacthez, de az alternatívák, mint a MobX vagy a Context API is érdemesek lehetnek a tanulásra.
+Tanuld meg, hogyan lehet komplex állapotokat kezelni egy alkalmazásban. A Redux a legismertebb állapotkezelő könyvtár Reacthez; ma a hivatalosan ajánlott formája a [Redux Toolkit](https://redux-toolkit.js.org/). Érdemes megismerni a könnyebb alternatívákat is, mint a [Zustand](https://zustand.docs.pmnd.rs/) vagy a MobX. Kisebb alkalmazásban gyakran elég a Context API a `useReducer` hookkal.
 
 ## Styling Technológiák
 
@@ -633,13 +631,15 @@ Ismerd meg, hogyan hívj meg külső API-kat, és hogyan dolgozz fel adatokat Re
 
 ## Build eszközök és deployment
 
-### Create React App
+### Vite
 
-Kezdj ezzel az eszközzel, amely gyorsan felállít egy React fejlesztői környezetet minden szükséges konfigurációval.
+Új projektet a [Vite](https://vite.dev/)-tel érdemes indítani (`npm create vite@latest`): gyorsan felállít egy React fejlesztői környezetet minden szükséges konfigurációval.
+
+> A korábban elterjedt **Create React App**-et a React csapata 2025 februárjában elavulttá nyilvánította, és már nem tartja karban. Régebbi leírásokban és projektekben még találkozhatsz vele, de új projekthez ne használd.
 
 ### Webpack és Babel
 
-Érdemes megérteni a modern JavaScript alkalmazások felépítéséhez és fordításához használt eszközöket.
+Érdemes megérteni a modern JavaScript alkalmazások felépítéséhez és fordításához használt eszközöket. Régebbi projektek jellemzően Webpackre és Babelre épülnek; a Vite ezek feladatát látja el.
 
 ### Deployment
 
@@ -672,9 +672,10 @@ a felhasználó számára fontosabb műveletsort vizsgálunk
 
 ## JavaScript teszt framework-ök
 
-- [**Jest**](https://jestjs.io) - Egységtesztelés, snapshot teszt, integrációs teszt. React-hez ideális *(Készítette: Facebook (Meta))*
+- [**Jest**](https://jestjs.io) - Egységtesztelés, snapshot teszt, integrációs teszt *(Készítette: Facebook (Meta))*
 - [**Mocha**](https://mochajs.org) - Egység- és integrációs teszt keretrendszer
-- [**Vitest**](https://vitest.dev/) - Modern egységteszt keretrendszer *Készítette: Vite közösség*
+- [**Vitest**](https://vitest.dev/) - Modern egységteszt keretrendszer, Vite alapú projektekhez ez a kézenfekvő választás *(Készítette: Vite közösség)*
+- [**React Testing Library**](https://testing-library.com/docs/react-testing-library/intro/) - React komponensek tesztelése a felhasználó szemszögéből; a Jesttel vagy a Vitesttel együtt használjuk
 - [**Cypress**](https://www.cypress.io/) - End-to-End (`E2E`) tesztelés
 
 ## Projektek Építése
@@ -683,23 +684,23 @@ Készíts saját kis projekteket, hogy gyakorold a tanultakat. Kezdd egyszerűbb
 
 ### Online kódolási lehetőségek
 
-| Funkció/Jellemző | [CodeSandbox](https://codesandbox.io/) | [StackBlitz](https://stackblitz.com/) | [React Playground](https://playcode.io/react) |[Create React App Online](https://create-react-app.dev/) |
-|---|---|---|---|---|
-| Alapvető funkciók |  |  |  |  |
-| Kód szerkesztő | Kiváló, sokféle nyelv támogatásával | Kiváló, gyors és intuitív | Egyszerű, de hatékony | Beépített a létrehozott projektbe |
-| Élő előnézet | Valós idejű frissítés | Valós idejű frissítés | Valós idejű frissítés | Beépített a fejlesztési szerverbe |
-| Debugger | Beépített debugger | Beépített debugger | Néhány esetben külső debugger szükséges | Chrome DevTools |
-| Tematizálás | Számos sablon és téma | Testre szabható megjelenés | Alapszintű testreszabás | Alapszintű testreszabás |
-| Integrációk |  |  |  |  |
-| Verziókövetés | Git integráció | Git integráció | Korlátozott támogatás | Git integráció |
-| Build eszközök | Webpack, Babel, stb. | Webpack, Babel, stb. | Előre konfigurált beállítások | Webpack, Babel, stb. |
-| Külső könyvtárak | NPM, Yarn támogatás | NPM, Yarn támogatás | Korlátozott támogatás | NPM, Yarn támogatás |
-| Sebesség |  |  |  |  |
-| Indítási idő | Gyors | Nagyon gyors | Gyors | Némi időt igényel a projekt létrehozása |
-| Frissítési idő | Valós idejű | Valós idejű | Valós idejű | Valós idejű |
-| Megosztás |  |  |  |  |
-| Projekt megosztása | Könnyű megosztás, verziókövetéssel | Könnyű megosztás, verziókövetéssel | Egyszerű URL megosztás | Az elkészült alkalmazás deploy-ozása |
-| Együttműködés | Valós idejű együttműködés | Valós idejű együttműködés | Korlátozott együttműködés | Nem támogatja az egyidejű szerkesztést |
+| Funkció/Jellemző | [CodeSandbox](https://codesandbox.io/) | [StackBlitz](https://stackblitz.com/) | [React Playground](https://playcode.io/react) |
+|---|---|---|---|
+| Alapvető funkciók |  |  |  |
+| Kód szerkesztő | Kiváló, sokféle nyelv támogatásával | Kiváló, gyors és intuitív | Egyszerű, de hatékony |
+| Élő előnézet | Valós idejű frissítés | Valós idejű frissítés | Valós idejű frissítés |
+| Debugger | Beépített debugger | Beépített debugger | Néhány esetben külső debugger szükséges |
+| Tematizálás | Számos sablon és téma | Testre szabható megjelenés | Alapszintű testreszabás |
+| Integrációk |  |  |  |
+| Verziókövetés | Git integráció | Git integráció | Korlátozott támogatás |
+| Build eszközök | Webpack, Babel, stb. | Webpack, Babel, stb. | Előre konfigurált beállítások |
+| Külső könyvtárak | NPM, Yarn támogatás | NPM, Yarn támogatás | Korlátozott támogatás |
+| Sebesség |  |  |  |
+| Indítási idő | Gyors | Nagyon gyors | Gyors |
+| Frissítési idő | Valós idejű | Valós idejű | Valós idejű |
+| Megosztás |  |  |  |
+| Projekt megosztása | Könnyű megosztás, verziókövetéssel | Könnyű megosztás, verziókövetéssel | Egyszerű URL megosztás |
+| Együttműködés | Valós idejű együttműködés | Valós idejű együttműködés | Korlátozott együttműködés |
 
 ## Frissítések és Új Technológiák Követése
 

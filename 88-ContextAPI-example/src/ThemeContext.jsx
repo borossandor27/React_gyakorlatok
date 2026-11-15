@@ -12,15 +12,14 @@ export const ThemeProvider = ({ children }) => {
     const toggleTheme = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
-    
-    ThemeProvider.propTypes = {
-        children: PropTypes.node.isRequired,
-    };
-    
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
+};
+
+ThemeProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };

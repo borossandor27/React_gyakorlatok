@@ -1,6 +1,5 @@
-import { Navigate, useLocation, Route } from 'react-router-dom';
-import { useAuth } from './AuthContext'; // vagy useState
-import Dashboard from './pages/Dashboard';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
@@ -18,14 +17,14 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
-// Használat:
-<Route
-  path="/dashboard"
-  element={
-    <ProtectedRoute>
-      <Dashboard />
-    </ProtectedRoute>
-  }
-/>
+// Használat (lásd layout/Main.jsx):
+// <Route
+//   path="/dashboard"
+//   element={
+//     <ProtectedRoute>
+//       <Dashboard />
+//     </ProtectedRoute>
+//   }
+// />
 
 export default ProtectedRoute;
