@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import LoadingData from "./LoadingData";
 import FilterForm from "./FilterForm";
@@ -17,11 +17,10 @@ const DataTable = () => {
     Hirlevel: false,
   });
 
-  const [szurtAdatok, setSzurtAdatok] = useState(adatok);
-
-  useEffect(() => {
-    setSzurtAdatok(adatok);
-  }, [adatok]);
+  // A szűrés eredménye. Amíg nem indítottak szűrést (null), az összes adatot mutatjuk,
+  // így nem kell effektben másolni a context adatait egy külön állapotba.
+  const [szuresEredmenye, setSzuresEredmenye] = useState(null);
+  const szurtAdatok = szuresEredmenye ?? adatok;
 
   // ✅ KOMPLEX SZŰRÉS EGY HELYEN
   const szuresInditasa = () => {
@@ -58,7 +57,7 @@ const DataTable = () => {
       return nevOK && magassagOK && gyerekOK && hirlevelOK && datumOK;
     });
 
-    setSzurtAdatok(eredmeny);
+    setSzuresEredmenye(eredmeny);
   };
 
   return (

@@ -11,8 +11,8 @@ A JavaScript dinamikus típusossága miatt nagyon hasznos, ha a kollégáknak is
 import PropTypes from 'prop-types';
 ```
 
-[!CAUTION]
-A PropTypes csak fejlesztési módban fut. A termelési (production) buildben nem ellenőrzi a props-okat.
+> [!CAUTION]
+> A React 19 már **nem végzi el** a `propTypes` ellenőrzését: a megadott szabályokat szó nélkül figyelmen kívül hagyja, hibás prop esetén sem jelenik meg figyelmeztetés a konzolban. Ez a projekt React 19-et használ, ezért a `propTypes` itt csak dokumentációként szolgál. A propok típusának ellenőrzésére ma a TypeScript az ajánlott megoldás.
 
-[!CAUTION]
-A kötelező props-ok (isRequired) elhagyása esetén a fejlesztői konzolban figyelmeztetést kapsz.
+> [!NOTE]
+> React 18-ig a PropTypes csak fejlesztési módban futott (a production buildben nem ellenőrizte a propokat), és a kötelező propok (`isRequired`) elhagyása esetén a fejlesztői konzolban jelent meg figyelmeztetés.
